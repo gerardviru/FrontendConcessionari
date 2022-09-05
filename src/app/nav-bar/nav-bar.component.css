@@ -1,0 +1,19 @@
+.navbar{
+    background-color: #3c3e3e;
+    color: white;
+    font-family:sans-serif;
+    font-size: medium;
+  }
+  
+  a{
+    color: white;
+  }
+  
+  a:hover{
+    color: rgb(243, 243, 243);
+  }
+  
+  #nav1{
+    margin-left: 30px;
+    text-shadow: 1px 1px #3333;
+  }

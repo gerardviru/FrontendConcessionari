@@ -1,0 +1,89 @@
+/* Login - Registro */
+
+.card{
+  box-shadow: 15px 15px 3px #3335;
+}
+
+.form-outline input{
+  display: block;
+  margin: auto;
+  width: 80%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #F1EAEA;
+  border: none;
+  box-shadow: inset 2px 2px 2px #999;
+}
+
+ .button{
+   letter-spacing: 0.1em;
+   border: none;
+   color: white;
+   background: #79C7BB;
+   box-shadow: 4px 4px 2px #4c857c;
+   display: block;
+   width: 80%;
+   height: 70px;
+   border-radius: 0.5rem;
+   margin: auto;
+ }
+
+.gradient-custom{
+  background: #8dc5db ;
+}
+
+.text-uppercase {
+  color:#3c3e3e
+}
+
+.mb-0{
+  color:#3c3e3e
+}
+
+.btn-group{
+  letter-spacing: 0.2em;
+  color: rgb(255, 255, 255) !important;
+  background-color: #beebf5;
+  text-align: center;
+  box-shadow: 4px 4px 2px #707d86;
+  width: 80%;
+  height: 60px;
+  border-radius: 0.5rem;
+  margin: auto;
+}
+
+.btncolor1{
+  background-color: #3c3e3e;
+  padding-top: 5%;
+  border: none;
+
+}
+
+ .btn{
+   letter-spacing: 0.1em;
+   border: none;
+   color: white;
+   background: #000000;
+   box-shadow: 4px 4px 2px #666868;
+   display: block;
+   width: 80%;
+   height: 70px;
+   border-radius: 0.5rem;
+   margin: auto;
+
+
+ }
+
+.gradient-custom{
+  background: #8dc5db ;
+}
+.text-uppercase {
+  color:#3c3e3e
+}
+.mb-0{
+  color:#3c3e3e
+}
+
+#main-login-section {
+  min-height: 100vh;
+}
