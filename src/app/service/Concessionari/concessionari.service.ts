@@ -3,19 +3,19 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Concessionari } from 'src/app/models/enum/concessionari/concessionari.model';
 
+
+const CONCESSIONARI = 'http://localhost:8181/api/concessionari';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class ConcessionariService {
 
-concessionari: string = "http://localhost:8181/api/concessionari";
-headers = new HttpHeaders().set('Content-Type', 'application/json');
-
   constructor(private httpClient: HttpClient) { }
 
-  listConcessionari():Observable<any>{
-    return this.httpClient.get(this.concessionari).pipe
+  listConcessionari():Observable<any[]>{
+    return this.httpClient.get<any>(`${CONCESSIONARI}`).pipe
     (catchError(this.handleError));
   }
 
