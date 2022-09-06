@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConcessionariService } from '../service/Concessionari/concessionari.service';
 
 @Component({
   selector: 'app-dealer-management',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DealerManagementComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private concessionariService: ConcessionariService ) { }
 
   ngOnInit(): void {
+    console.log(sessionStorage.getItem('auth-token'));
+            this.concessionariService.listConcessionari().subscribe({
+              next:(result:any)=>{
+                console.log(result);
+                
+              },
+              error:(error:Error)=>{
+                console.log(Error);
+                
+              }
+            })
   }
 
 }

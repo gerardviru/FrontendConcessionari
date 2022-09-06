@@ -10,7 +10,7 @@ const AUTH_API = "http://localhost:8181/"
 export class AuthService {
 
   isAuth: boolean = false;
-  username: string | undefined;
+  username : string | undefined;
   role: string | null = null;
 
   constructor(private httpCliente: HttpClient) {
@@ -28,11 +28,12 @@ export class AuthService {
    * @param password
    * @returns
    */
-  login(username: string | null | undefined, password: string | null | undefined): Observable<any> {
+  login(user: string | null | undefined, pass: string | null | undefined): Observable<any> {
     return this.httpCliente.post(AUTH_API + 'login', {
-      username: username,
-      password: password
+      username: user,
+      password: pass
     });
+
   }
 
   /**

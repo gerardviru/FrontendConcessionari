@@ -10,6 +10,6 @@ export class ProfileSelectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
-
 }

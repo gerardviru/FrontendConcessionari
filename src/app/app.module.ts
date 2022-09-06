@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInViewModule } from './log-in-view/log-in-view.module';
-import { authInterceptorProvider } from './helpers/auth.interceptor';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileSelectionComponent } from './profile-selection/profile-selection.component';
@@ -19,7 +19,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ProfileSelectionComponent,
     DealerManagementComponent,
     CarDealershipComponent,
-    NavBarComponent
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +34,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
       provide: LOCALE_ID,
       useValue: 'es-ES'
     },
-    authInterceptorProvider
+    AuthInterceptor
   ],
   bootstrap: [AppComponent]
 })
