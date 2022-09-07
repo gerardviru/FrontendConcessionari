@@ -15,12 +15,10 @@ export class DealerManagementComponent implements OnInit {
     console.log(sessionStorage.getItem('auth-token'));
             this.concessionariService.listConcessionari().subscribe({
               next:(result:any)=>{
-                console.log(result);
-                
+                console.log(result); 
               },
               error:(error:Error)=>{
                 console.log(Error);
-                
               }
             })
   }

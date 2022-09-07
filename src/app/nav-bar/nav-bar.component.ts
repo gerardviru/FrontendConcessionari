@@ -1,6 +1,9 @@
+import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/Auth/auth.service';
+
+import { AuthService } from '../service/Auth/auth/auth.service';
+import { SessionService } from '../service/Auth/SessionStorage/session.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,15 +16,12 @@ export class NavBarComponent implements OnInit {
   username: string | undefined;
   role: string | undefined | null;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) { }
-
+  dataBuscar: any;
+  libro: any;
+  durationInSeconds: number = 5;
+  constructor( private router: Router, private sesionService: SessionService, private authService: AuthService) {}
 
   ngOnInit(): void {
-
-    // On route change check if user is authenticated
     this.router.events.subscribe(event => {
 
       this.isAuth = this.authService.isAuthenticated()

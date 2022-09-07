@@ -1,5 +1,5 @@
 <section id="main-login-section" class="gradient-custom"></section>
-<div class="container" >
+<div class="container" *ngIf="user!=undefined" >
   <br>
 <div  class="card p-5 text-center rounded-4">
   <h2>Seleción de Perfil</h2>
@@ -9,7 +9,7 @@
         <label for="ex1" id="ex1">Usuario</label>
       </div>
       <div class="col-sm">
-        <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="123456" >
+        <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="{{usuario.username}}" >
       </div>
       <div class="col-sm align-items-center">
         <label for="ex3"></label>
@@ -21,7 +21,7 @@
         <label for="ex1" id="ex1">Nombre Completo</label>
         </div>
         <div class="col-sm">
-          <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="Marta Ribera Martí" >
+          <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder=" Gerard Viñuela" >
         </div>
         <div class="col-sm align-items-center">
           <label for="ex3"></label>

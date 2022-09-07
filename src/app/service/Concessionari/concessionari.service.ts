@@ -4,7 +4,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Concessionari } from 'src/app/models/enum/concessionari/concessionari.model';
 
 
-const CONCESSIONARI = 'http://localhost:8181/api/concessionari';
+const CONCESSIONARI = 'http://localhost:8181/api/concessionari'; 
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +14,15 @@ export class ConcessionariService {
 
   constructor(private httpClient: HttpClient) { }
 
-  listConcessionari():Observable<any[]>{
+  listConcessionari():Observable<Concessionari>{
     return this.httpClient.get<any>(`${CONCESSIONARI}`).pipe
     (catchError(this.handleError));
   }
 
-  // getById(id: string){
-  //   return this.httpClient.get<any>(`${concessionari}/${id}`).pipe(
-  //     catchError(this.handleError));
-  // }
+  getById(id: string){
+    return this.httpClient.get<Concessionari>(`${CONCESSIONARI}/${id}`).pipe(
+      catchError(this.handleError));
+  }
 
   
 

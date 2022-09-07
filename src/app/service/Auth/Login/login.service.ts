@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
-import { token } from 'src/app/models/token/token.model';
-import { usuario } from 'src/app/models/usuario/usuario.model'
+import { Token } from 'src/app/models/Token/token.model';
+import { Usuario } from 'src/app/models/Usuario/usuario.model'
 
 const baseUrl = "http://localhost:8181/"
 
@@ -18,20 +18,22 @@ export class LoginService {
     this.user$ = new Subject();
   }
 
-  login(usuario: any): Observable<token> {
-    return this.httpClient.post<token>(`${baseUrl}login`, usuario).pipe(
+  login(Usuario: any): Observable<Token> {
+    console.log("login");
+    return this.httpClient.post<Token>(`${baseUrl}login`, Usuario).pipe(
       catchError(this.handleError)
     );
   }
 
-  getByName(username: string): Observable<usuario> {
-    return this.httpClient.get<usuario>(`${baseUrl}usuario/username${username}`).pipe(
+  getByName(username: string): Observable<Usuario>{
+    console.log("getByName");
+    return this.httpClient.get<Usuario>(`${baseUrl}api/usuari/username/${username}`).pipe(
       catchError(this.handleError)
     );
   }
 
-  add(user: usuario): Observable<usuario> {
-    return this.httpClient.post<usuario>(`${baseUrl}usuario/`, user).pipe(
+  add(user: Usuario): Observable<Usuario> {
+    return this.httpClient.post<Usuario>(`${baseUrl}Usuario/`, user).pipe(
       catchError(this.handleError)
     );
   }
@@ -40,6 +42,8 @@ export class LoginService {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
+      console.log(error.status);
+      
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
@@ -57,8 +61,8 @@ export class LoginService {
   }
 
 
-  setUser(usuario: any) {
-    this.user = usuario;
+  setUser(Usuario: any) {
+    this.user = Usuario;
   }
 
   getUser(): any {

@@ -15,9 +15,19 @@ export class SessionService {
   }
 
   public saveSession(session: Session){
+    console.log("inicio SaveSession");
+    console.log(sessionStorage.getItem("auth-token"));
+    console.log(sessionStorage.getItem("auth-rol"));
+    console.log(sessionStorage.getItem("auth-username"));
+    
     window.sessionStorage.setItem(Sessionkeys.token, session.token);
     window.sessionStorage.setItem(Sessionkeys.rol, session.rol);
     window.sessionStorage.setItem(Sessionkeys.username, session.username);
+
+    console.log(sessionStorage.getItem("auth-token"));
+    console.log(sessionStorage.getItem("auth-rol"));
+    console.log(sessionStorage.getItem("auth-username"));
+    
   }
 
   public getSession(): any {

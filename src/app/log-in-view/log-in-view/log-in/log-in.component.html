@@ -3,60 +3,34 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card p-5 text-center rounded-4">
-
           <div class="mb-md-5 mt-md-4 pb-5">
-
             <h2 class="fw mb-5 text-uppercase">Iniciar Sesión</h2>
 
-            <div class="spinner-border" *ngIf="loading"></div>
-
             <!-- Form -->
-            <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()" *ngIf="!loading">
 
-              <div class="form-outline form-white mb-4">
-                <input type="email" class="form-control form-control-lg" placeholder="Usuario"
-                  formControlName="username" />
-              </div>
+            <div class="form-outline form-white mb-4">
+              <input
+                type="email"
+                class="form-control form-control-lg"
+                placeholder="Usuario"
+              />
+            </div>
 
-              <div class="form-outline form-white mb-4">
-                <input type="password" class="form-control form-control-lg" placeholder="Contraseña"
-                  formControlName="password" />
+            <div class="form-outline form-white mb-4">
+              <input
+                type="password"
+                class="form-control form-control-lg"
+                placeholder="Contraseña"
+              />
+            </div>
 
-              </div>
+            <button class="btn px-5 fs-5" (click)="onSubmit()">Entrar</button>
 
-              <button class="btn px-5 fs-5" type="submit" [disabled]="loginFormGroup.invalid">Entrar</button>
-
-            </form>
             <!-- Validation errors -->
-            <ul class="alert alert-danger mt-3"
-              *ngIf="loginFormGroup.invalid && (loginFormGroup.dirty || loginFormGroup.touched)">
-
-              <p class="m-1 p-0 " *ngIf="loginFormGroup.get('username')?.errors?.['required']">
-                Introduce el usuario.
-              </p>
-              <p class="m-1 p-0 " *ngIf="loginFormGroup.get('password')?.errors?.['required']">
-                Introduce la contraseña.
-              </p>
-
-            </ul>
-            <!-- fallo login -->
-            <ul class="alert alert-danger mt-3" *ngIf="fail">
-              <p class="my-1 p-0 ">
-                Ha ocurrido un error.
-              </p>
-            </ul>
-
           </div>
-
-          <div>
-            <p class="mb-0">Aún no te has registrado?
-              <a routerLink="/registro">Registrate!</a>
-            </p>
-          </div>
-
+          <div></div>
         </div>
       </div>
     </div>
   </div>
-
 </section>
