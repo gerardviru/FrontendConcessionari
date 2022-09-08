@@ -28,10 +28,10 @@ export class AuthService {
    * @param password
    * @returns
    */
-  login(user: string | null | undefined, pass: string | null | undefined): Observable<any> {
+  login(username: string | null | undefined, password: string | null | undefined): Observable<any> {
     return this.httpCliente.post(AUTH_API + 'login', {
-      username: user,
-      password: pass
+      username: username,
+      password: password
     });
 
   }

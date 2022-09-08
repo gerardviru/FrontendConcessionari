@@ -1,16 +1,17 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, Subject, throwError } from 'rxjs';
+import { catchError, Observable, throwError, Subject, pipe } from 'rxjs';
 import { Token } from 'src/app/models/Token/token.model';
-import { Usuario } from 'src/app/models/Usuario/usuario.model'
+import { User } from 'src/app/models/user/user.model';
+import { Usuario } from 'src/app/models/Usuario/usuario.model';
 
-const baseUrl = "http://localhost:8181/"
+const baseUrl = 'http://localhost:8181/';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class LoginService {
+
   private user!: any;
   private user$!: Subject<any>;
 
@@ -18,22 +19,20 @@ export class LoginService {
     this.user$ = new Subject();
   }
 
-  login(Usuario: any): Observable<Token> {
-    console.log("login");
-    return this.httpClient.post<Token>(`${baseUrl}login`, Usuario).pipe(
+  login(usuario: any): Observable<Token> {
+    return this.httpClient.post<Token>(`${baseUrl}login`, usuario).pipe(
       catchError(this.handleError)
     );
   }
 
-  getByName(username: string): Observable<Usuario>{
-    console.log("getByName");
-    return this.httpClient.get<Usuario>(`${baseUrl}api/usuari/username/${username}`).pipe(
+  getByName(username: string): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${baseUrl}usuario/username${username}`).pipe(
       catchError(this.handleError)
     );
   }
 
   add(user: Usuario): Observable<Usuario> {
-    return this.httpClient.post<Usuario>(`${baseUrl}Usuario/`, user).pipe(
+    return this.httpClient.post<Usuario>(`${baseUrl}usuario/`, user).pipe(
       catchError(this.handleError)
     );
   }
@@ -42,8 +41,6 @@ export class LoginService {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
-      console.log(error.status);
-      
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
@@ -52,7 +49,7 @@ export class LoginService {
       'Something bad happened; please try again later.');
   };
 
-  getUser$(): Observable<any>{
+  getUser$(): Observable<User>{
     return this.user$.asObservable();
   }
 
@@ -61,8 +58,8 @@ export class LoginService {
   }
 
 
-  setUser(Usuario: any) {
-    this.user = Usuario;
+  setUser(usuario: any) {
+    this.user = usuario;
   }
 
   getUser(): any {

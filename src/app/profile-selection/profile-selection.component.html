@@ -1,5 +1,5 @@
 <section id="main-login-section" class="gradient-custom"></section>
-<div class="container" *ngIf="user!=undefined" >
+<div class="container">
   <br>
 <div  class="card p-5 text-center rounded-4">
   <h2>Seleción de Perfil</h2>
@@ -9,7 +9,7 @@
         <label for="ex1" id="ex1">Usuario</label>
       </div>
       <div class="col-sm">
-        <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="{{usuario.username}}" >
+        <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="gerard" >
       </div>
       <div class="col-sm align-items-center">
         <label for="ex3"></label>
@@ -21,7 +21,7 @@
         <label for="ex1" id="ex1">Nombre Completo</label>
         </div>
         <div class="col-sm">
-          <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder=" Gerard Viñuela" >
+          <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="Gerard Viñuela Ruiz" >
         </div>
         <div class="col-sm align-items-center">
           <label for="ex3"></label>
@@ -49,17 +49,21 @@
 
     <div class="label ,form-group row ">
       <form>
-      <input type="radio" id="val1" name="respuesta" value="val1">
-      <label for="val1"> Administrador</label><br><br>
-      <input type="radio" id="val2" name="respuesta" value="val2">
-      <label for="val2"> Director</label><br><br>
-      <input type="radio" id="val3" name="respuesta" value="val3">
-      <label for="val3"> Comercial</label><br><br>
-      <input type="radio" id="val3" name="respuesta" value="val3">
-      <label for="val3"> Mecánico</label><br><br>
-    </form>
+        <input type="radio" id="val1" name="respuesta" value="val1">
+        <label for="val1"> Administrador</label><br><br>
+        <input type="radio" id="val2" name="respuesta" value="val2">
+        <label for="val2"> Director</label><br><br>
+        <input type="radio" id="val3" name="respuesta" value="val3">
+        <label for="val3"> Comercial</label><br><br>
+        <input type="radio" id="val3" name="respuesta" value="val3">
+        <label for="val3"> Mecánico</label><br><br>
+      </form> 
+      <div class="row justify-content-end">
+        <div class="col-md-2">
+          <button class="btn btn-success" (click)="onSubmit()">Seleccionar</button>
+        </div> 
+      </div>
     </div>
-
   </form>
 </div>
 

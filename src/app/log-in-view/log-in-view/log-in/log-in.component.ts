@@ -23,7 +23,7 @@ export class LogInComponent implements OnInit {
 
   usuario!: Usuario;
 
-  Session: Session;
+  session: Session;
 
   sigInFail = false;
 
@@ -31,12 +31,12 @@ export class LogInComponent implements OnInit {
 
   // @Output() isSigned = new EventEmitter();
 
-  constructor(private loginService: LoginService, private usuariService:UsuariService, private SessionService: SessionService, private rolService: RolService, private router: Router) {
+  constructor(private loginService: LoginService, private usuarioService:UsuariService, private sessionService: SessionService, private rolService: RolService, private router: Router) {
     this.user = {
       username: 'gerard',
       password: 'password'
     }
-    this.Session = {
+    this.session = {
       username: '',
       token: '',
       rol: ''
@@ -44,7 +44,6 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
   onSubmit(): void {
@@ -54,10 +53,10 @@ export class LogInComponent implements OnInit {
     .subscribe(
       {
         next: (result: Token) => {
-          this.Session.token = result.token;
-          this.SessionService.setToken(this.Session.token);
-          this.Session.username = this.user.username;
-          this.SessionService.setUsername(this.Session.username)
+          this.session.token = result.token;
+          this.sessionService.setToken(this.session.token);
+          this.session.username = this.user.username;
+          this.sessionService.setUsername(this.session.username)
           this.getUsuario(this.user.username);
 
 
@@ -73,23 +72,21 @@ export class LogInComponent implements OnInit {
 
   getUsuario(username: string){
     console.log(username + " gerUsuario");
-    this.usuariService.getByUsername(username).subscribe({
+    this.usuarioService.getByUsername(username).subscribe({
       next:(result: Usuario) =>{
         console.log(result);
         this.usuario = result;
-        this.Session.rol = this.usuario.role;
-        this.SessionService.setRol(this.Session.rol);
+        this.session.rol = this.usuario.rol;
+        this.sessionService.setRol(this.session.rol);
         this.sigInFail = false;
         this.submitted = true;
         console.log(this.usuario);
         console.log(" usuario");
         this.loginService.setUser(this.user);
         this.loginService.setUser$();
-        console.log(Rol[this.usuario.role]);
-        this.rolService.addRol(Rol[this.usuario.role]);
-        console.log(Rol[this.usuario.role]);
-        console.log("navigate");
-        this.usuariService.setUsuarilogin(username);
+        console.log(Rol[this.usuario.rol]);
+        this.rolService.addRol(Rol[this.usuario.rol]);
+        console.log(Rol[this.usuario.rol]);
         this.router.navigate(['/profile']);
         // this.isSigned.emit(this.submitted);
 
@@ -105,107 +102,6 @@ export class LogInComponent implements OnInit {
     this.router.navigate(['/signup']);
   }
 
-
-  /**
-   * On submit click atempt login
-   */
-  // onSubmit() {
-  //   this.loading = true;
-  //   const username = this.loginFormGroup.value.username;
-  //   const password = this.loginFormGroup.value.password;
-
-  //   this.authService.login('gerard', 'password').subscribe({
-  //     next:(result: any) =>{
-  //       this.success = true;
-  //           this.loading = false;
-    
-  //           // format role; ex: from "ROLE_ADMIN" to "admin"
-  //           // const roleArr: string = result.role.split('_');
-  //           // const role = roleArr[roleArr.length - 1].toLocaleLowerCase();
-    
-  //           // Set logged in status
-  //           this.authService.setAuthenticated(true);
-  //           this.authService.setUsername(username);
-  //           // this.authService.setRole(role);
-    
-  //           // Show success message for 2.5sec
-  //           const contador = timer(2500);
-  //           // Make submit button available again
-  //           contador.subscribe(() => {this.success = false; this.submited = false})
-    
-  //           // Save login in sessionStorage
-  //           window.sessionStorage.setItem("auth-token", result.token)
-    
-  //           // Save login username in sessionStorage
-  //           if(username != null){
-  //             window.sessionStorage.setItem("auth-username", username)
-  //           }
-            
-  //           // Save role in sessionStorage
-  //           // window.sessionStorage.setItem("auth-role", role)
-    
-  //           // Redirect to home (TODO: show a successfuly message )
-  //           this.router.navigate(['profile']);
-  //     },
-  //     error:(error: Error) =>{
-  //       console.log(error);
-        
-  //     }
-  //   })
-
-
-  //   // const Observable = this.authService.login(username, password)
-
-  //   // Observable.subscribe({
-  //   //   next: (v) => {
-  //   //     this.success = true;
-  //   //     this.loading = false;
-
-  //   //     // format role; ex: from "ROLE_ADMIN" to "admin"
-  //   //     const roleArr: string = v.role.split('_');
-  //   //     const role = roleArr[roleArr.length - 1].toLocaleLowerCase();
-
-  //   //     // Set logged in status
-  //   //     this.authService.setAuthenticated(true);
-  //   //     this.authService.setUsername(username);
-  //   //     this.authService.setRole(role);
-
-  //   //     // Show success message for 2.5sec
-  //   //     const contador = timer(2500);
-  //   //     // Make submit button available again
-  //   //     contador.subscribe(() => {this.success = false; this.submited = false})
-
-  //   //     // Save login in sessionStorage
-  //   //     window.sessionStorage.setItem("auth-token", v.token)
-
-  //   //     // Save login username in sessionStorage
-  //   //     if(username != null){
-  //   //       window.sessionStorage.setItem("auth-username", username)
-  //   //     }
-        
-  //   //     // Save role in sessionStorage
-  //   //     window.sessionStorage.setItem("auth-role", role)
-
-  //   //     // Redirect to home (TODO: show a successfuly message )
-  //   //     this.router.navigate(['profile']);
-  //   //   },
-  //   //   error: (e) => {
-  //   //     this.fail = true;
-  //   //     this.loading = false;
-
-  //   //     // Show fail message for 2.5sec
-  //   //     const contador = timer(2500);
-  //   //     contador.subscribe(() => this.fail = false)
-
-  //   //     // Make submit button available again
-  //   //     this.submited = false
-  //   //     console.log(e)
-  //   //   },
-  //   //   // complete: () => {
-  //   //   //   console.log("complete!")
-  //   //   // }
-
-  //   // })
 }
 
 

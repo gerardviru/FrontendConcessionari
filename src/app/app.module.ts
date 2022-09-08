@@ -11,6 +11,7 @@ import { ProfileSelectionComponent } from './profile-selection/profile-selection
 import { DealerManagementComponent } from './dealer-management/dealer-management.component';
 import { CarDealershipComponent } from './car-dealership/car-dealership.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     LogInViewModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,  
   ],

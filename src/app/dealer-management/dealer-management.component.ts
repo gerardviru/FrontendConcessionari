@@ -8,19 +8,20 @@ import { ConcessionariService } from '../service/Concessionari/concessionari.ser
 })
 export class DealerManagementComponent implements OnInit {
 
-
+  datosConcesionario: any
   constructor(private concessionariService: ConcessionariService ) { }
 
   ngOnInit(): void {
-    console.log(sessionStorage.getItem('auth-token'));
-            this.concessionariService.listConcessionari().subscribe({
-              next:(result:any)=>{
-                console.log(result); 
-              },
-              error:(error:Error)=>{
-                console.log(Error);
-              }
-            })
+    
+    this.concessionariService.listConcessionari().subscribe({
+      next:(result:any)=>{
+        console.log(result); 
+        result = this.datosConcesionario;
+      },
+      error:(error:Error)=>{
+        console.log(Error);
+      }
+    })
   }
 
 }
