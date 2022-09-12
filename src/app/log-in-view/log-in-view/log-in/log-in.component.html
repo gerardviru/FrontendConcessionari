@@ -11,6 +11,7 @@
             <div class="form-outline form-white mb-4">
               <input
                 type="email"
+                ngDefaultControl [(ngModel)] = "userlog"
                 class="form-control form-control-lg"
                 placeholder="Usuario"
               />
@@ -19,6 +20,7 @@
             <div class="form-outline form-white mb-4">
               <input
                 type="password"
+                ngDefaultControl [(ngModel)] = "passlog"
                 class="form-control form-control-lg"
                 placeholder="Contraseña"
               />

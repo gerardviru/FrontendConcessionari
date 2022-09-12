@@ -13,6 +13,7 @@ import { CarDealershipComponent } from './car-dealership/car-dealership.componen
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,

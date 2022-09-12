@@ -46,7 +46,7 @@ export class UsuariService {
   }
 
   update(id: any,data: any){
-    return this.httpClient.put<Usuario>(`${baseUrl}/${id}`,data).pipe(catchError(this.handleError));
+    return this.httpClient.put<Usuario>(`${baseUrl}/usuari/${id}`,data).pipe(catchError(this.handleError));
   }
 
   delete(id:any){
