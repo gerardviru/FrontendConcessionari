@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConcessionariService } from '../service/Concessionari/concessionari.service';
+import { Concesionari } from '../models/Concesionario/concesionario.model';
 
 @Component({
   selector: 'app-dealer-management',
@@ -8,7 +9,8 @@ import { ConcessionariService } from '../service/Concessionari/concessionari.ser
 })
 export class DealerManagementComponent implements OnInit {
 
-  datosConcesionario: any
+  concesionario!: Concesionari
+  datosConcesionario: any = {"id":"", "cif": "", "nom": "", "telefon":"","email":"", "idfk_prov": "", "codi_postal": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": ""};
   constructor(private concessionariService: ConcessionariService ) { }
 
   ngOnInit(): void {
@@ -16,12 +18,18 @@ export class DealerManagementComponent implements OnInit {
     this.concessionariService.listConcessionari().subscribe({
       next:(result:any)=>{
         console.log(result); 
-        result = this.datosConcesionario;
+        result = this.concesionario;
+        this.concessionariService.getItem(this.concesionario).subscribe(
+          datosConcesionario => { this.datosConcesionario = datosConcesionario
+            console.log(datosConcesionario);
+            
+          }
+        )
       },
       error:(error:Error)=>{
         console.log(Error);
       }
-    })
+    });
   }
 
 }

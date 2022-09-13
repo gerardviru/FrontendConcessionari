@@ -31,11 +31,18 @@ export class UsuariService {
     );
   }
 
-  getById(id: string){
-    return this.httpClient.get<Usuario>(`${baseUrl}/${id}`).pipe(
+  getById(id: number){
+    return this.httpClient.get<Usuario>(`${baseUrl}/usuari${id}`).pipe(
       catchError(this.handleError));
 
   }
+
+  getItem(id: any): Observable<any> {
+    return this.httpClient.get(`${baseUrl}/usuari/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getByUsername(username: string){
     return this.httpClient.get<Usuario>(`${baseUrl}/usuari/username/${username}`).pipe(
       catchError(this.handleError));

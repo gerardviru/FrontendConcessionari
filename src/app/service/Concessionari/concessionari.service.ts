@@ -24,6 +24,12 @@ export class ConcessionariService {
       catchError(this.handleError));
   }
 
+  getItem(id: any): Observable<any> {
+    return this.httpClient.get(`${CONCESSIONARI}/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   
 
   // add(data:any){

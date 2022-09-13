@@ -9,7 +9,7 @@
         <label for="ex1" id="ex1">Usuario</label>
       </div>
       <div class="col-sm">
-        <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="gerard" >
+        <span type="text" readonly class="form-control-plaintext" id="ex2">{{usuario.username}}</span>
       </div>
       <div class="col-sm align-items-center">
         <label for="ex3"></label>
@@ -21,7 +21,7 @@
         <label for="ex1" id="ex1">Nombre Completo</label>
         </div>
         <div class="col-sm">
-          <input type="text" readonly class="form-control-plaintext" id="ex2" placeholder="Gerard Viñuela Ruiz" >
+          <span type="text" readonly class="form-control-plaintext" id="ex2" >{{usuario.persona.nom}} {{usuario.persona.cognom1}} {{usuario.persona.cognom2}}</span>
         </div>
         <div class="col-sm align-items-center">
           <label for="ex3"></label>
@@ -48,15 +48,15 @@
     </div>
 
     <div class="label ,form-group row ">
-      <form>
-        <input type="radio" id="val1" name="respuesta" value="val1">
+      <form [formGroup]="userForm">
+        <input type="radio" id="val1" name="respuesta" value="val1" formControlName="profile">
         <label for="val1"> Administrador</label><br><br>
-        <input type="radio" id="val2" name="respuesta" value="val2">
+        <input type="radio" id="val2" name="respuesta" value="val2" formControlName="profile">
         <label for="val2"> Director</label><br><br>
-        <input type="radio" id="val3" name="respuesta" value="val3">
+        <input type="radio" id="val3" name="respuesta" value="val3" formControlName="profile">
         <label for="val3"> Comercial</label><br><br>
-        <input type="radio" id="val3" name="respuesta" value="val3">
-        <label for="val3"> Mecánico</label><br><br>
+        <input type="radio" id="val3" name="respuesta" value="val4" formControlName="profile">
+        <label for="val4"> Mecánico</label><br><br>
       </form> 
       <div class="row justify-content-end">
         <div class="col-md-2">

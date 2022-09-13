@@ -5,6 +5,7 @@ import { Persona } from '../models/Persona/persona.model';
 import { UsuariService } from '../service/Usuario/usuari.service';
 import { PersonaService } from '../service/Persona/persona.service';
 import { LoginService } from '../service/Auth/Login/login.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,22 +18,33 @@ export class ProfileSelectionComponent implements OnInit {
   user: any;
   usuario!: Usuario;
   persona!: Persona;
-  
+  datousuario: any = {"id":"", "username": "", "email": "", "password":"","rol":"", "intents": "", "bloquejat": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": "", "persona": ""};
+
+  userForm = new FormGroup({
+    profile: new FormControl('', Validators.required),
+    check: new FormControl('', Validators.requiredTrue),
+  });
 
   constructor(private usuariService: UsuariService, private loginService: LoginService, private personaService: PersonaService,private router: Router) { 
 
   }
 
   ngOnInit(): void {
-    this.loginService.getUser$().subscribe(user => {
-      this.user = user;
+    this.loginService.getUser$().subscribe(
+      user => { this.user = user;
+      this.usuariService.getItem(this.usuario).subscribe(
+        datousuario => { this.datousuario = datousuario
+          console.log(datousuario);
+        } 
+      )
     });
 
     this.user = this.loginService.getUser();
-  
-    // if (this.user != undefined) {
-    //   this.getUsuario(this.user.username);
-    // }
+
+    if (this.user != undefined) {
+      this.getUsuario(this.user.username);
+    }
+
   }
   
   getUsuario(username: string){
@@ -48,8 +60,7 @@ export class ProfileSelectionComponent implements OnInit {
       error:(error: any) =>{
         console.log(error + ' Error rol sesion user' );
       }
-    });
-  
+    })
     }
 
     onSubmit(): void {
