@@ -16,11 +16,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private addToken(request: HttpRequest<any>) {
     const token = window.sessionStorage.getItem("auth-token");
-     console.log(token, ' token');
+    //  console.log(token, ' token');
     if (token != null) {
       request = request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
-      console.log(request.headers.getAll(TOKEN_HEADER_KEY) + " petición");
-      console.log(request.url + " petición");
+      // console.log(request.headers.getAll(TOKEN_HEADER_KEY) + " petición");
+      // console.log(request.url + " petición");
+      return request;
     }
   return request;
   }

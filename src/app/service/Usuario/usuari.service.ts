@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Usuario } from 'src/app/models/Usuario/usuario.model';
 
@@ -9,6 +9,8 @@ const baseUrl = 'http://localhost:8181/api';
   providedIn: 'root'
 })
 export class UsuariService {
+
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   usuarilogin: any;
   
@@ -25,8 +27,8 @@ export class UsuariService {
   }
 
 
-  list(): Observable<any[]> {
-    return this.httpClient.get<Usuario[]>(`${baseUrl}`).pipe(
+  list(): Observable<any> {
+    return this.httpClient.get(`${baseUrl}/usuari`).pipe(
       catchError(this.handleError)
     );
   }

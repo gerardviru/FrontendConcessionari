@@ -32,18 +32,16 @@ export class ProfileSelectionComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.getUser$().subscribe(
       user => { this.user = user;
-      this.usuariService.getItem(this.usuario).subscribe(
-        datousuario => { this.datousuario = datousuario
-          console.log(datousuario);
-        } 
-      )
     });
 
     this.user = this.loginService.getUser();
 
     if (this.user != undefined) {
       this.getUsuario(this.user.username);
-    }
+
+    } else {
+      this.router.navigate(['/']);
+    } 
 
   }
   
@@ -52,16 +50,9 @@ export class ProfileSelectionComponent implements OnInit {
     this.usuariService.getByUsername(username).subscribe({
       next:(result: Usuario) =>{
         this.usuario = result;
-
-        this.getUsuario(this.usuariService.getUsuarilogin());
-        console.log(username);
-        
-      },
-      error:(error: any) =>{
-        console.log(error + ' Error rol sesion user' );
       }
-    })
-    }
+    });
+  }
 
     onSubmit(): void {
       this.router.navigate (["/dealer"])

@@ -19,9 +19,15 @@ export class ConcessionariService {
     (catchError(this.handleError));
   }
 
-  getById(id: string){
+  getById(id: number){
     return this.httpClient.get<Concessionari>(`${CONCESSIONARI}/${id}`).pipe(
       catchError(this.handleError));
+  }
+
+  getConcesionario(idpk_con: number){
+    return this.httpClient.get(`${CONCESSIONARI}/${idpk_con}`).pipe(
+      catchError(this.handleError));
+
   }
 
   getItem(id: any): Observable<any> {

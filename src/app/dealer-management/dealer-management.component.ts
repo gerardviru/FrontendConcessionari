@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConcessionariService } from '../service/Concessionari/concessionari.service';
-import { Concesionari } from '../models/Concesionario/concesionario.model';
+import { LoginService } from '../service/Auth/Login/login.service';
+import { UsuariService } from '../service/Usuario/usuari.service';
+import { Concessionari } from '../models/enum/concessionari/concessionari.model';
 
 @Component({
   selector: 'app-dealer-management',
@@ -9,27 +11,33 @@ import { Concesionari } from '../models/Concesionario/concesionario.model';
 })
 export class DealerManagementComponent implements OnInit {
 
-  concesionario!: Concesionari
-  datosConcesionario: any = {"id":"", "cif": "", "nom": "", "telefon":"","email":"", "idfk_prov": "", "codi_postal": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": ""};
-  constructor(private concessionariService: ConcessionariService ) { }
+  id: any;
+  concesionario!: Concessionari
+  datoConcesionario: any = {"idpk_con":"", "cif": "", "nom": "", "telefon":"","email":"", "provincia": "", "codi_postal": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": ""};
+  user: any;
+  
+  constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService ) { }
 
-  ngOnInit(): void {
+  getInputValue(inputValue:string){
+    console.log(inputValue);
     
-    this.concessionariService.listConcessionari().subscribe({
-      next:(result:any)=>{
-        console.log(result); 
-        result = this.concesionario;
-        this.concessionariService.getItem(this.concesionario).subscribe(
-          datosConcesionario => { this.datosConcesionario = datosConcesionario
-            console.log(datosConcesionario);
-            
-          }
-        )
-      },
-      error:(error:Error)=>{
-        console.log(Error);
+    let idN = Number(inputValue);
+    console.log(idN);
+    
+    this.concessionariService.getById(idN).subscribe({
+      next:(result: Concessionari) =>{
+        this.concesionario = result;
       }
-    });
+    })
   }
 
+
+  // cleanValue(idN: number){
+  //   if(idN != 1 && 11){
+
+  //   }
+
+  ngOnInit(): void {
+    this.getInputValue;  
+  }
 }
