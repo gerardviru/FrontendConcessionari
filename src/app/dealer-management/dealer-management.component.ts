@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConcessionariService } from '../service/Concessionari/concessionari.service';
 import { LoginService } from '../service/Auth/Login/login.service';
 import { UsuariService } from '../service/Usuario/usuari.service';
@@ -16,7 +17,8 @@ export class DealerManagementComponent implements OnInit {
   datoConcesionario: any = {"idpk_con":"", "cif": "", "nom": "", "telefon":"","email":"", "provincia": "", "codi_postal": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": ""};
   user: any;
   
-  constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService ) { }
+  
+  constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService, private router: Router ) { }
 
   getInputValue(inputValue:string){
     console.log(inputValue);
@@ -37,7 +39,13 @@ export class DealerManagementComponent implements OnInit {
 
   //   }
 
+
+  redirect(){
+    this.router.navigate(['/concesionario']);
+  }
+
   ngOnInit(): void {
-    this.getInputValue;  
+    this.getInputValue; 
+    this.redirect;
   }
 }

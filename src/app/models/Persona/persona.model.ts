@@ -1,3 +1,4 @@
+
 export interface Persona{
     id: number;
     nif: number;
@@ -6,6 +7,7 @@ export interface Persona{
     cognom2: string;
     telefon: string;
     email: string;
+    
     adreça: string;
     codi_postal: number;
     creat_per: string;

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInViewModule } from './log-in-view/log-in-view.module';
@@ -12,6 +11,7 @@ import { DealerManagementComponent } from './dealer-management/dealer-management
 import { CarDealershipComponent } from './car-dealership/car-dealership.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PersonComponent } from './person/person.component';
 
 
 @NgModule({
@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DealerManagementComponent,
     CarDealershipComponent,
     NavBarComponent,
+    PersonComponent,
   ],
   imports: [
     BrowserModule,

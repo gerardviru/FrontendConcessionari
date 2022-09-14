@@ -7,10 +7,7 @@
           <label for="ex1" id="ex1">Introduzca el identificador</label>
         </div>
         <div class="col-sm">
-          <input #identificador type="text" class="form-control-plaintext" id="ex2">
-        </div>
-        <div class="col-sm align-items-center">
-          <label for="ex3"></label>
+          <input #identificador type="text" class="form-control" id="ex2">
         </div>
       </div>
 
@@ -23,9 +20,6 @@
         <div class="col-sm">
           <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.cif}}</span>
         </div>
-        <div class="col-sm align-items-center">
-          <label for="ex3"></label>
-        </div>
       </div>
   
       <br>
@@ -36,9 +30,6 @@
         </div>
         <div class="col-sm">
           <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.nom}}</span>
-        </div>
-        <div class="col-sm align-items-center">
-          <label for="ex3"></label>
         </div>
       </div>
   
@@ -51,9 +42,6 @@
         <div class="col-sm">
           <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.telefon}}</span>
         </div>
-        <div class="col-sm align-items-center">
-          <label for="ex3"></label>
-        </div>
       </div>
   
       <br>
@@ -64,9 +52,6 @@
         </div>
         <div class="col-sm">
           <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.email}}</span>
-        </div>
-        <div class="col-sm align-items-center">
-          <label for="ex3"></label>
         </div>
       </div>
 
@@ -82,21 +67,20 @@
             <option value="item 1">{{concesionario.provincia.nom}}</option>
           </select>
         </div>
-        <div class="col-sm align-items-center">
-          <label for="ex3"></label>
-        </div>
       </div>
       <br>
     </form>
+
+
     <div class="row justify-content-end">
       <div class="col-md-2">
-        <button class="btn btn-success" (click)="getInputValue(identificador.value)">Guardar</button>
+        <button class="btn btn-success" (click)="getInputValue(identificador.value)">Buscar</button>
       </div>
       <div class="col-md-2">
-        <button class="btn btn-info">Limpiar</button>
+        <button class="btn btn-danger">Limpiar</button>
       </div>
       <div class="col-md-2">
-        <button class="btn btn-danger">Cancelar</button>
+        <button class="btn btn-primary" (click)="redirect()">Nuevo</button>
       </div>  
     </div>
   </div>

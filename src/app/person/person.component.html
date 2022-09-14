@@ -1,0 +1,108 @@
+<div class="card col-8 text-center rounded-4">
+    <div class="container" >
+      <h2>Nueva Asignación Persona</h2>
+        <form>
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Introduzca el identificador</label>
+            </div>
+            <div class="col-sm">
+              <input #identificador type="text" class="form-control" id="ex2" placeholder="31">
+            </div>
+          </div>
+    
+          <br>
+    
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">NIF</label>
+            </div>
+            <div class="col-sm">
+                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+      
+          <br>
+      
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Nombre</label>
+            </div>
+            <div class="col-sm">
+                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+      
+          <br>
+      
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Primer apellido</label>
+            </div>
+            <div class="col-sm">
+                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+      
+          <br>
+      
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Segundo apellido</label>
+            </div>
+            <div class="col-sm">
+                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+    
+          <br>
+    
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Telefono</label>
+            </div>
+            <div class="col-sm">
+                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+          <br>
+
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Email</label>
+            </div>
+            <div class="col-sm">
+                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+
+          <br>
+
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Dirección</label>
+            </div>
+            <div class="col-sm">
+                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+        </form>
+        
+        <br>
+
+        <div class="row justify-content-end">
+          <div class="col-md-2">
+            <button class="btn btn-success" (click)="getInputValue(identificador.value)">Guardar</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-danger">Limpiar</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary" (click)="redirect()">Cancelar</button>
+          </div>  
+        </div>
+
+        <br>
+
+      </div>
+    </div>
