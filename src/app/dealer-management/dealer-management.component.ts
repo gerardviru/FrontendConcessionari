@@ -44,6 +44,10 @@ export class DealerManagementComponent implements OnInit {
     this.router.navigate(['/concesionario']);
   }
 
+  newPerson(){
+    this.router.navigate(['/person']);
+  }
+
   ngOnInit(): void {
     this.getInputValue; 
     this.redirect;

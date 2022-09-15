@@ -1,46 +1,25 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Persona } from '../../models/Persona/persona.model';
 
 const baseUrl = 'http://localhost:8181/api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonaService {
-
-  DatosPersona: any;
+export class ProvinciaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getDatosPersona(){
-    return this.DatosPersona;
-  }
-
-  setDatosPersona(nom: any, cognom1: any, cognom2: any){
-
-    this.DatosPersona = nom, cognom1, cognom2;
-  }
-
   list(): Observable<any> {
-    return this.httpClient.get(`${baseUrl}/persona`).pipe(
+    return this.httpClient.get(`${baseUrl}/provincia`).pipe(
       catchError(this.handleError)
     );
   }
 
-  getById(id: number){
-    return this.httpClient.get<Persona>(`${baseUrl}/persona${id}`).pipe(
-      catchError(this.handleError));
 
-  }
 
-  add(data: any){
-    return this.httpClient.post<any>(`${baseUrl}/persona`,data).pipe(catchError(this.handleError));
-  }
   
-
-  // Handle API errors
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('An error occurred:', error.error.message);

@@ -7,7 +7,7 @@
               <label for="ex1" id="ex1">Introduzca el identificador</label>
             </div>
             <div class="col-sm">
-              <input #identificador type="text" class="form-control" id="ex2" placeholder="31">
+              <input type="text" name="id" [(ngModel)]="persona.idpk_persona" class="form-control" id="ex2" placeholder="31">
             </div>
           </div>
     
@@ -18,7 +18,7 @@
               <label for="ex1" id="ex1">NIF</label>
             </div>
             <div class="col-sm">
-                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+                <input type="text" name="nif" [(ngModel)]="persona.nif" class="form-control-plaintext" id="ex2">
             </div>
           </div>
       
@@ -29,7 +29,7 @@
               <label for="ex1" id="ex1">Nombre</label>
             </div>
             <div class="col-sm">
-                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+                <input type="text" name="Nombre" [(ngModel)]="persona.nom" class="form-control-plaintext" id="ex2">
             </div>
           </div>
       
@@ -40,7 +40,7 @@
               <label for="ex1" id="ex1">Primer apellido</label>
             </div>
             <div class="col-sm">
-                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+                <input type="text" name="Cognom1" [(ngModel)]="persona.cognom1" class="form-control-plaintext" id="ex2">
             </div>
           </div>
       
@@ -51,7 +51,7 @@
               <label for="ex1" id="ex1">Segundo apellido</label>
             </div>
             <div class="col-sm">
-                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+                <input type="text" name="Cognom2" [(ngModel)]="persona.cognom2" class="form-control-plaintext" id="ex2">
             </div>
           </div>
     
@@ -62,7 +62,7 @@
               <label for="ex1" id="ex1">Telefono</label>
             </div>
             <div class="col-sm">
-                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+                <input type="text" name="Telefono" [(ngModel)]="persona.telefon" class="form-control-plaintext" id="ex2">
             </div>
           </div>
           <br>
@@ -72,9 +72,24 @@
               <label for="ex1" id="ex1">Email</label>
             </div>
             <div class="col-sm">
-                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+                <input type="text" name="Email" [(ngModel)]="persona.email" class="form-control-plaintext" id="ex2">
             </div>
           </div>
+
+          <br>
+
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Provincia</label>
+            </div>
+            <div class="col-sm" *ngIf="provincia != null">
+              <select name="Provincia" [(ngModel)]="provincia" class="form-control-plaintext" placeholder="Provincia">
+                <option disabled selected>Selecciona la provincia</option>
+                <option *ngFor="let prov of provincia" value="{{prov.nom}}">{{prov.nom}}</option>
+              </select>
+            </div>
+          </div>
+
 
           <br>
 
@@ -83,7 +98,7 @@
               <label for="ex1" id="ex1">Dirección</label>
             </div>
             <div class="col-sm">
-                <input #identificador type="text" class="form-control-plaintext" id="ex2">
+                <input type="text" name="Direccion" [(ngModel)]="persona.adreca" class="form-control-plaintext" id="ex2">
             </div>
           </div>
         </form>
@@ -92,7 +107,7 @@
 
         <div class="row justify-content-end">
           <div class="col-md-2">
-            <button class="btn btn-success" (click)="getInputValue(identificador.value)">Guardar</button>
+            <button class="btn btn-success" (click)="getValors()">Guardar</button>
           </div>
           <div class="col-md-2">
             <button class="btn btn-danger">Limpiar</button>
