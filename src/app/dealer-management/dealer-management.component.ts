@@ -13,12 +13,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class DealerManagementComponent implements OnInit {
 
+  disabled: boolean = true;
+
   id: any;
   concesionario!: Concessionari
   datoConcesionario: any = {"idpk_con":"", "cif": "", "nom": "", "telefon":"","email":"", "provincia": "", "codi_postal": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": ""};
   user: any;
   idN: any;
-
+  newvalue: {} ;
   myForm: FormGroup;
 
   constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService, private router: Router ) { }
@@ -61,7 +63,11 @@ export class DealerManagementComponent implements OnInit {
     this.router.navigate(['/concesionario']);
   }
 
-  clear(){
-   this.router.navigate(['/menu'])
-  }  
+  back(){
+    this.router.navigate(['/menu']);
+  }
+
+  Update(){
+    this.disabled = !this.disabled;
+  }
 }

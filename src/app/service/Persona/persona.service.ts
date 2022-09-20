@@ -30,7 +30,7 @@ export class PersonaService {
   }
 
   getById(id: number){
-    return this.httpClient.get<Persona>(`${baseUrl}/persona${id}`).pipe(
+    return this.httpClient.get<Persona>(`${baseUrl}/persona/${id}`).pipe(
       catchError(this.handleError));
 
   }

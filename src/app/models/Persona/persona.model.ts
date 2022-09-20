@@ -1,4 +1,4 @@
-import { Provincia } from "../provincia/provincia.model";
+import { Concesionario } from "../Concesionario/concesionario.model";
 
 export interface Persona{
     idpk_persona: number;
@@ -10,6 +10,7 @@ export interface Persona{
     email: string;
     adreça: string;
     provincia: any;
+    concessionari: any;
     codi_postal: number;
     tipo_persona: string;
     creat_per: string;

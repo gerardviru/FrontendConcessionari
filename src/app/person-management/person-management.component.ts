@@ -13,6 +13,7 @@ import { PersonaService } from '../service/Persona/persona.service';
 })
 export class PersonManagementComponent implements OnInit {
 
+  disabled: boolean = true;
   id: any;
   persona!: Persona
   datoPersona: any = {"idpk_persona":"", "nif": "", "nom": "", "cognom1":"","cognom2":"", "telefon": "", "email": "", "adreca":"", "idfk_prov":"", "codi_postal":"", "actualitzat_per":"", "data_actualitzacio": ""};
@@ -61,9 +62,13 @@ export class PersonManagementComponent implements OnInit {
     this.router.navigate(['/concesionario']);
   }
 
-  clear(){
-   this.myForm?.reset();
-}
+  Update(){
+      
+  }
+
+  back(){
+    this.router.navigate(['/menu']);
+  }
 
   newPerson(){
     this.router.navigate(['/person']);

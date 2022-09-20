@@ -27,6 +27,10 @@ export class CarDealershipComponent implements OnInit {
     }
   }
 
+  clear(){
+    
+  }
+
   Cancelar(){
     this.router.navigate(['/dealer']);
   }

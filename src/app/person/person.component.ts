@@ -4,6 +4,7 @@ import { PersonaService } from '../service/Persona/persona.service';
 import { Persona } from '../models/Persona/persona.model';
 import { ProvinciaService } from '../service/Provincia/provincia.service';
 import { Provincia } from '../models/provincia/provincia.model';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-person',
@@ -11,6 +12,8 @@ import { Provincia } from '../models/provincia/provincia.model';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
+
+  disabled: boolean = true;
 
   persona: any = {};
 
@@ -20,9 +23,29 @@ export class PersonComponent implements OnInit {
 
   Dpersona!: Persona;
 
+  myForm: FormGroup;
+
   constructor(private personaService: PersonaService ,private router: Router, private provinciaService: ProvinciaService) { }
 
   ngOnInit(): void {
+
+    this.myForm = new FormGroup({
+
+      idpk_persona: new FormControl(""),
+      nif: new FormControl(""), 
+      nom: new FormControl(""),
+      cognom1: new FormControl(""),
+      cognom2: new FormControl(""),
+      telefon: new FormControl(""),
+      email: new FormControl(""),
+      provincia: new FormControl (""),
+      concessionari: new FormControl (""),
+      codi_postal: new FormControl(""),
+      create_per: new FormControl(""),
+      actualitzat_per: new FormControl(""),
+      data_actualitzacio: new FormControl (""),
+
+    })
 
     this.provinciaService.list().subscribe({
       next: (result: Provincia) => {
@@ -57,8 +80,12 @@ export class PersonComponent implements OnInit {
   }
 
   redirect(){
-
     this.router.navigate(['/management-person']);
+  }
+
+  clear(){
+    this.myForm.reset;
+    this.disabled = !this.disabled;
   }
 
 }
