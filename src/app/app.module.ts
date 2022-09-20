@@ -12,6 +12,8 @@ import { CarDealershipComponent } from './car-dealership/car-dealership.componen
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonComponent } from './person/person.component';
+import { MenuComponent } from './menu/menu.component';
+import { PersonManagementComponent } from './person-management/person-management.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { PersonComponent } from './person/person.component';
     CarDealershipComponent,
     NavBarComponent,
     PersonComponent,
+    MenuComponent,
+    PersonManagementComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConcessionariService } from '../service/Concessionari/concessionari.service';
 import { LoginService } from '../service/Auth/Login/login.service';
 import { UsuariService } from '../service/Usuario/usuari.service';
-import { Concessionari } from '../models/enum/concessionari/concessionari.model';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Persona } from '../models/Persona/persona.model';
+import { PersonaService } from '../service/Persona/persona.service';
 
 @Component({
-  selector: 'app-dealer-management',
-  templateUrl: './dealer-management.component.html',
-  styleUrls: ['./dealer-management.component.css']
+  selector: 'app-person-management',
+  templateUrl: './person-management.component.html',
+  styleUrls: ['./person-management.component.css']
 })
-export class DealerManagementComponent implements OnInit {
+export class PersonManagementComponent implements OnInit {
 
   id: any;
-  concesionario!: Concessionari
-  datoConcesionario: any = {"idpk_con":"", "cif": "", "nom": "", "telefon":"","email":"", "provincia": "", "codi_postal": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": ""};
+  persona!: Persona
+  datoPersona: any = {"idpk_persona":"", "nif": "", "nom": "", "cognom1":"","cognom2":"", "telefon": "", "email": "", "adreca":"", "idfk_prov":"", "codi_postal":"", "actualitzat_per":"", "data_actualitzacio": ""};
   user: any;
   idN: any;
 
   myForm: FormGroup;
 
-  constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService, private router: Router ) { }
+  constructor(private personaService: PersonaService, private loginService: LoginService, private usuariService: UsuariService, private router: Router ) { }
 
   ngOnInit(): void {
 
@@ -50,9 +50,9 @@ export class DealerManagementComponent implements OnInit {
     this.idN = Number(inputValue);
     console.log(this.idN);
     
-    this.concessionariService.getById(this.idN).subscribe({
-      next:(result: Concessionari) =>{
-        this.concesionario = result;
+    this.personaService.getById(this.idN).subscribe({
+      next:(result: Persona) =>{
+        this.persona = result;
       }
     })
   }
@@ -62,6 +62,17 @@ export class DealerManagementComponent implements OnInit {
   }
 
   clear(){
-   this.router.navigate(['/menu'])
-  }  
+   this.myForm?.reset();
 }
+
+  newPerson(){
+    this.router.navigate(['/person']);
+  }
+
+  
+}
+
+
+
+
+ 

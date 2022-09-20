@@ -9,8 +9,9 @@ export interface Persona{
     telefon: string;
     email: string;
     adreça: string;
-    provincia: Provincia
+    provincia: any;
     codi_postal: number;
+    tipo_persona: string;
     creat_per: string;
     data_creacio: Date;
     actualitzat_per: string;

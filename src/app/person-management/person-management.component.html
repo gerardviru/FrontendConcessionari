@@ -1,0 +1,88 @@
+<div class="card col-8 text-center rounded-4">
+    <div class="container">
+      <h2>Gestión Persona</h2>
+        <form id="miForm" [formGroup]="myForm"  (ngSubmit)="clear()">
+          <div class="form-group row border-b" >
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Introduzca el identificador</label>
+            </div>
+            <div class="col-sm">
+              <input #identificador type="text" class="form-control" id="ex2">
+            </div>
+          </div>
+    
+          <br>
+    
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">NIF</label>
+            </div>
+            <div class="col-sm">
+              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.nif}}</span>
+            </div>
+          </div>
+      
+          <br>
+      
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Nombre</label>
+            </div>
+            <div class="col-sm">
+              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.nom}}</span>
+            </div>
+          </div>
+      
+          <br>
+      
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Telefono</label>
+            </div>
+            <div class="col-sm">
+              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.telefon}}</span>
+            </div>
+          </div>
+      
+          <br>
+      
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">E-mail</label>
+            </div>
+            <div class="col-sm">
+              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.email}}</span>
+            </div>
+          </div>
+    
+          <br>
+    
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Provincia</label>
+            </div>
+            <div class="col-sm">
+              <select name="Provincia" class="form-control-plaintext" placeholder="Provincia">
+                <option disabled selected>Selecciona la provincia</option>
+                <option value="item 1">{{persona.provincia.nom}}</option>
+              </select>
+            </div>
+          </div>
+          <br>
+        </form>
+    
+    
+        <div class="row justify-content-end">
+          <div class="col-md-2">
+            <button class="btn btn-success" (click)="getInputValue(identificador.value)">Buscar</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-danger" (click)="clear()">Limpiar</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary" (click)="newPerson()">Nueva Persona</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    

@@ -14,6 +14,8 @@ export class PersonComponent implements OnInit {
 
   persona: any = {};
 
+  provinciaSelected = "";
+
   provincia: any;
 
   Dpersona!: Persona;
@@ -34,10 +36,18 @@ export class PersonComponent implements OnInit {
   }
 
   getValors(){
-    console.log(this.persona);
+    console.log(this.persona.provincia);
+    
+    let provnom = {
+      nom: this.provinciaSelected
+    }
+    this.persona.provincia = provnom;
+    console.log(this.persona); 
+
     if(this.persona.length == 0){
       console.log("array vacio");
     } else {
+ 
       this.personaService.add(this.persona).subscribe({
         next:(result:Persona) => {
           this.Dpersona = result;
@@ -47,8 +57,8 @@ export class PersonComponent implements OnInit {
   }
 
   redirect(){
-    
-    this.router.navigate(['/dealer']);
+
+    this.router.navigate(['/management-person']);
   }
 
 }

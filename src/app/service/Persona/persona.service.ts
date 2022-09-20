@@ -35,10 +35,23 @@ export class PersonaService {
 
   }
 
+  getByNom(nom: string){
+    return this.httpClient.get<Persona>(`${baseUrl}/persona/nom/${nom}`).pipe(
+      catchError(this.handleError));
+  }
+
   add(data: any){
     return this.httpClient.post<any>(`${baseUrl}/persona`,data).pipe(catchError(this.handleError));
   }
-  
+
+  update(id: any,data: any ){
+    return this.httpClient.put<Persona>(`${baseUrl}/persona/${id}`,data).pipe(catchError(this.handleError));
+  }
+
+  delete(id:any){
+    return this.httpClient.delete<Persona>(`${baseUrl}/${id}`).pipe(catchError(this.handleError));
+  }
+
 
   // Handle API errors
   handleError(error: HttpErrorResponse) {

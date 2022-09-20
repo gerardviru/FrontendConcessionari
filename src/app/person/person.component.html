@@ -83,7 +83,7 @@
               <label for="ex1" id="ex1">Provincia</label>
             </div>
             <div class="col-sm" *ngIf="provincia != null">
-              <select name="Provincia" [(ngModel)]="provincia" class="form-control-plaintext" placeholder="Provincia">
+              <select name="Provincia" [(ngModel)]="provinciaSelected" class="form-control-plaintext" placeholder="Provincia">
                 <option disabled selected>Selecciona la provincia</option>
                 <option *ngFor="let prov of provincia" value="{{prov.nom}}">{{prov.nom}}</option>
               </select>
@@ -95,10 +95,25 @@
 
           <div class="form-group row border-b">
             <div class="col-sm">
-              <label for="ex1" id="ex1">Dirección</label>
+              <label for="ex1" id="ex1">Concesionario</label>
             </div>
             <div class="col-sm">
-                <input type="text" name="Direccion" [(ngModel)]="persona.adreca" class="form-control-plaintext" id="ex2">
+                <input type="text" name="concesionario" [(ngModel)]="persona.concesionario" class="form-control-plaintext" id="ex2">
+            </div>
+          </div>
+
+          <br>
+
+          <div class="form-group row border-b">
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Tipo de Persona </label>
+            </div>
+            <div class="col-sm">
+              <select name="tipo_persona" [(ngModel)]="persona.tipo_persona" class="form-control-plaintext">
+                <option disabled selected>Selecciona el tipo de Persona</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Trabajador">Trabajador</option>
+              </select>
             </div>
           </div>
         </form>
@@ -114,7 +129,7 @@
           </div>
           <div class="col-md-2">
             <button class="btn btn-primary" (click)="redirect()">Cancelar</button>
-          </div>  
+          </div>
         </div>
 
         <br>

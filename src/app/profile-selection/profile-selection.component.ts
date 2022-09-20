@@ -55,7 +55,7 @@ export class ProfileSelectionComponent implements OnInit {
   }
 
     onSubmit(): void {
-      this.router.navigate (["/dealer"])
+      this.router.navigate (["/menu"])
   }
 }
 
