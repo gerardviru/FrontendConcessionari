@@ -72,8 +72,11 @@
         <div class="col-sm">
           <label for="ex1" id="ex1">Provincia</label>
         </div>
-        <div class="col-sm">
-          <input  type="text" class="form-control-plaintext" id="ex2" value="">
+        <div class="col-sm" *ngIf="provincia != null">
+          <select name="Provincia" [(ngModel)]="provinciaSelected" class="form-control-plaintext" placeholder="Provincia">
+            <option disabled selected>Selecciona la provincia</option>
+            <option *ngFor="let prov of provincia" value="{{prov.nom}}">{{prov.nom}}</option>
+          </select>
         </div>
       </div>
 

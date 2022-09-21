@@ -12,6 +12,6 @@ export interface Concessionari {
     data_creacio: Date;
     actualitzat_per: string;
     data_actualitzacio: Date;
-    provincia: Provincia;
+    provincia: any;
 
 }

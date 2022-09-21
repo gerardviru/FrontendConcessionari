@@ -36,56 +36,15 @@ export class ConcessionariService {
     );
   }
 
-  
-
-  // add(data:any){
-  //   return this.httpClient.post<Concessionari>(`${concessionari}`,data).pipe(catchError(this.handleError));
-  // }
-
-  // buscarPropietarioLibro(idUsuario:any){
-  //   const usuarioId = {
-  //     id:idUsuario.id
-  //   }
-  //   return this.httpClient.post<any>(`${concessionari}/usuario`,usuarioId).pipe(catchError(this.handleError));
-  // }
-
-  // update(id: any,data: Concessionari){
-  //   const updateconcessionari = {
-  //     id: data.id,
-  //     cif: data.cif,
-  //     nom: data.nom,
-  //     telefon: data.telefon,
-  //     email: data.email,
-  //     adreça: data.adreça,
-  //     codi_postal: data.codi_postal,
-  //     creat_per: data.creat_per,
-  //     data_creacio:data.data_creacio,
-  //     actualitzat_per:data.actualitzat_per,
-  //     data_actualitzacio:data.data_actualitzacio,
-  //     provincia: {
-  //       id:data.provincia.id,
-  //       codi_prov:data.provincia.codi_prov,
-  //       create_per:data.creat_per,
-  //       data_creacio:data.data_creacio,
-  //       actualitzat_per:data.actualitzat_per,
-  //       data_actualitzacio:data.data_actualitzacio,
-  //     }
-  //   };
-
-
-  //   return this.httpClient.put<Concessionari>(`${concessionari}/${id}`,updateconcessionari).pipe(catchError(this.handleError));
-  // }
-
-  // delete(id:any){
-  //   return this.httpClient.delete<Concessionari>(`${concessionari}/${id}`).pipe(catchError(this.handleError));
-  // }
+  update(id: any,data: any ){
+    return this.httpClient.put<Concessionari>(`${CONCESSIONARI}/${id}`,data).pipe(catchError(this.handleError));
+  }
 
       // Handle API errors
       handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
           console.log('An error occurred:', error.error.message);
         } else {
-         // console.log(          `Backend returned code ${error.status}, ` +`body was: ${error.error}`);
          console.log(error.status);
         }
         return throwError(
