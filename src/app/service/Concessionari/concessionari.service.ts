@@ -24,10 +24,19 @@ export class ConcessionariService {
       catchError(this.handleError));
   }
 
+  getByNom(nom: string){
+    return this.httpClient.get<Concessionari>(`${CONCESSIONARI}/nom/${nom}`).pipe(
+      catchError(this.handleError));
+  }
+
   getConcesionario(idpk_con: number){
     return this.httpClient.get(`${CONCESSIONARI}/${idpk_con}`).pipe(
       catchError(this.handleError));
 
+  }
+
+  add(data: any){
+    return this.httpClient.post<any>(`${CONCESSIONARI}`,data).pipe(catchError(this.handleError));
   }
 
   getItem(id: any): Observable<any> {
@@ -38,6 +47,10 @@ export class ConcessionariService {
 
   update(id: any,data: any ){
     return this.httpClient.put<Concessionari>(`${CONCESSIONARI}/${id}`,data).pipe(catchError(this.handleError));
+  }
+
+  delete(id:any){
+    return this.httpClient.delete<Concessionari>(`${CONCESSIONARI}/${id}`).pipe(catchError(this.handleError));
   }
 
       // Handle API errors

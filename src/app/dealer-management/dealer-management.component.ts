@@ -4,7 +4,7 @@ import { ConcessionariService } from '../service/Concessionari/concessionari.ser
 import { LoginService } from '../service/Auth/Login/login.service';
 import { UsuariService } from '../service/Usuario/usuari.service';
 import { Concessionari } from '../models/enum/concessionari/concessionari.model';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProvinciaService } from '../service/Provincia/provincia.service';
 import { Provincia } from '../models/provincia/provincia.model';
 
@@ -15,18 +15,14 @@ import { Provincia } from '../models/provincia/provincia.model';
 })
 export class DealerManagementComponent implements OnInit {
 
-  
-  disabled: boolean = true;
 
-  id: any;
-  provincia: any;
-  provinciaSelected: any;
+  disabled: boolean = true
+  provincia: any
+  provinciaSelected: any
   concesionario!: Concessionari
-  datoConcesionario: any = {"idpk_con":"", "cif": "", "nom": "", "telefon":"","email":"", "provincia": "", "codi_postal": "", "create_per":"", "actualitzat_per":"", "data_actualitzacio": ""};
-  user: any;
-  idN: any;
-  nconcesionario: any = {} ;
-  myForm: FormGroup;
+  idN: any
+  nconcesionario: any = {}
+  myForm: FormGroup
 
   constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService, private provinciaService: ProvinciaService, private router: Router ) { }
 
@@ -34,45 +30,36 @@ export class DealerManagementComponent implements OnInit {
 
     this.myForm = new FormGroup({
 
-      idpk_con: new FormControl(""),
-      cif: new FormControl(""), 
-      nom: new FormControl(""),
-      telefon: new FormControl(""),
-      email: new FormControl(""),
-      provincia: new FormControl (""),
-      codi_postal: new FormControl(""),
-      create_per: new FormControl(""),
-      actualitzat_per: new FormControl(""),
-      data_actualitzacio: new FormControl (""),
+      idpk_con: new FormControl('', Validators.required),
+      cif: new FormControl('', Validators.required), 
+      nom: new FormControl('', Validators.required),
+      telefon: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      provincia: new FormControl ('', Validators.required),
+      codi_postal: new FormControl('', Validators.required),
+      create_per: new FormControl('', Validators.required),
+      actualitzat_per: new FormControl('', Validators.required),
+      data_actualitzacio: new FormControl ('', Validators.required),
 
     })
 
     this.provinciaService.list().subscribe({
       next: (result: Provincia) => {
-      
-        
         this.provincia = result;
         console.log(this.provincia);
       }
     })
   }
 
-
-  getInputValue(inputValue:string){
-    console.log(inputValue);
+  getInputValue(nombreCon:string){
+    console.log(nombreCon);
    
-    
-    
-    this.idN = Number(inputValue);
-    console.log(this.idN);
-    console.log(this.nconcesionario)
-    
-    this.concessionariService.getById(this.idN).subscribe({
+    this.concessionariService.getByNom(nombreCon).subscribe({
       next:(result: Concessionari) =>{
         this.concesionario = result;
+        console.log(this.concesionario); 
       }
     })
-    this.concesionario = this.nconcesionario;
   }
   
   redirect(){
@@ -84,20 +71,37 @@ export class DealerManagementComponent implements OnInit {
   }
 
   update(){
+    
     this.disabled = !this.disabled;
+    console.log("valor conce")
+    console.log(this.nconcesionario)
+    console.log('selected')
+    console.log(this.provinciaSelected)
+    
+    this.nconcesionario.provincia = {
 
-    console.log(this.nconcesionario);
-  
-    this.concessionariService.update(this.idN,this.nconcesionario).subscribe({
+      "nom": this.provinciaSelected
+    }
+    
+    this.concessionariService.update(this.nconcesionario.idpk_con,this.nconcesionario).subscribe({
       next:(result: Concessionari) =>{
-        this.nconcesionario = result;
-        console.log("result");
-        console.log(result);
+        console.log("result")
+        console.log(result)
       }
     })
-      console.log(this.nconcesionario);
-      
-    
-    
+    console.log(this.nconcesionario)
   }
+
+
+  deleteCon(){
+
+    console.log(this.concesionario.idpk_con);
+    
+    this.concessionariService.delete(this.concesionario.idpk_con).subscribe ({
+      next:(result: Concessionari) => {
+      }
+    })
+    alert("Concesionario Eliminado")
+  }
+
 }

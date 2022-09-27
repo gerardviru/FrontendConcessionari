@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../service/Auth/Login/login.service';
-import { UsuariService } from '../service/Usuario/usuari.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Persona } from '../models/Persona/persona.model';
 import { PersonaService } from '../service/Persona/persona.service';
+
 
 @Component({
   selector: 'app-person-management',
@@ -14,6 +13,7 @@ import { PersonaService } from '../service/Persona/persona.service';
 export class PersonManagementComponent implements OnInit {
 
   disabled: boolean = true;
+  provincia: any
   id: any;
   persona!: Persona
   datoPersona: any = {"idpk_persona":"", "nif": "", "nom": "", "cognom1":"","cognom2":"", "telefon": "", "email": "", "adreca":"", "idfk_prov":"", "codi_postal":"", "actualitzat_per":"", "data_actualitzacio": ""};
@@ -22,7 +22,7 @@ export class PersonManagementComponent implements OnInit {
 
   myForm: FormGroup;
 
-  constructor(private personaService: PersonaService, private loginService: LoginService, private usuariService: UsuariService, private router: Router ) { }
+  constructor(private personaService: PersonaService, private router: Router ) { }
 
   ngOnInit(): void {
 
@@ -40,20 +40,15 @@ export class PersonManagementComponent implements OnInit {
       data_actualitzacio: new FormControl (""),
 
     })
-    this.getInputValue; 
-    this.redirect;
   }
 
-
-  getInputValue(inputValue:string){
-    console.log(inputValue);
+  getInputValue(NomPer:string){
+    console.log(NomPer);
     
-    this.idN = Number(inputValue);
-    console.log(this.idN);
-    
-    this.personaService.getById(this.idN).subscribe({
+    this.personaService.getByNom(NomPer).subscribe({
       next:(result: Persona) =>{
         this.persona = result;
+        console.log(this.persona);
       }
     })
   }
@@ -72,6 +67,10 @@ export class PersonManagementComponent implements OnInit {
 
   newPerson(){
     this.router.navigate(['/person']);
+  }
+
+  DeletePer(){
+
   }
 
   

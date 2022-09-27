@@ -1,13 +1,28 @@
 <div class="card col-8 text-center rounded-4">
     <div class="container">
       <h2>Gestión Persona</h2>
+      <div class="col-md-1 ">
+        <button class="btn btn-dark" (click)="back()">🡰</button>
+      </div> 
         <form id="miForm" [formGroup]="myForm">
-          <div class="form-group row border-b" >
+
+          <div class="form-group row border-b">
             <div class="col-sm">
-              <label for="ex1" id="ex1">Introduzca el identificador</label>
+              <label for="ex1" id="ex1">Nombre Completo</label>
             </div>
             <div class="col-sm">
-              <input #identificador type="text" class="form-control" id="ex2">
+              <input #NomPer type="text" class="form-control" id="ex2">
+            </div>
+          </div>
+
+          <br>
+          
+          <div class="form-group row border-b" >
+            <div class="col-sm">
+              <label for="ex1" id="ex1">Identificador</label>
+            </div>
+            <div class="col-sm">
+              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.idpk_persona}}</span>
             </div>
           </div>
     
@@ -19,17 +34,6 @@
             </div>
             <div class="col-sm">
               <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.nif}}</span>
-            </div>
-          </div>
-      
-          <br>
-      
-          <div class="form-group row border-b">
-            <div class="col-sm">
-              <label for="ex1" id="ex1">Nombre Completo</label>
-            </div>
-            <div class="col-sm">
-              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.nom}} {{persona.cognom1}} {{persona.cognom2}}</span>
             </div>
           </div>
       
@@ -92,7 +96,7 @@
     
         <div class="row justify-content-end">
           <div class="col-md-2">
-            <button class="btn btn-success" (click)="getInputValue(identificador.value)">Buscar</button>
+            <button class="btn btn-success" (click)="getInputValue(NomPer.value)">Buscar</button>
           </div>
           <div class="col-md-2">
             <button class="btn btn-warning" (click)="Update()">Actualizar</button>
@@ -101,7 +105,7 @@
             <button class="btn btn-primary" (click)="newPerson()">Nueva Persona</button>
           </div>
           <div class="col-md-2">
-            <button class="btn btn-danger" (click)="back()">Atrás</button>
+            <button class="btn btn-danger" (click)="DeletePer()">Eliminar</button>
           </div>
         </div>
       </div>

@@ -49,13 +49,10 @@ export class PersonComponent implements OnInit {
 
     this.provinciaService.list().subscribe({
       next: (result: Provincia) => {
-      
-        
-        this.provincia = result;
-        console.log(this.provincia);
+        this.provincia = result
+        console.log(this.provincia)
       }
     })
-
   }
 
   getValors(){
@@ -79,8 +76,8 @@ export class PersonComponent implements OnInit {
     }
   }
 
-  redirect(){
-    this.router.navigate(['/management-person']);
+  back(){
+    this.router.navigate(['/menu'])
   }
 
   clear(){

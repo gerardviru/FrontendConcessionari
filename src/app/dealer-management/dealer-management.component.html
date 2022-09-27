@@ -1,16 +1,35 @@
 <div class="card col-8 text-center rounded-4">
 <div class="container">
   <h2>Gestión Concesionario</h2>
+  <div class="col-md-1 ">
+    <button class="btn btn-dark" (click)="back()">🡰</button>
+  </div> 
     <form>
       <div class="form-group row border-b" >
         <div class="col-sm">
-          <label for="ex1" id="ex1">Introduzca el identificador</label>
+          <label for="ex1" id="ex1">Nombre Concesionario</label>
         </div>
         <div class="col-sm">
-          <input #identificador type="text" class="form-control" id="ex2">
+          <input #nombreCon type="text" class="form-control" id="ex2">
         </div>
       </div>
 
+      <br>
+
+      <div class="form-group row border-b">
+        <div class="col-sm">
+          <label for="ex1" id="ex1">Identificador</label>
+        </div>
+        <div class="col-sm">
+          <div *ngIf="disabled">
+          <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.idpk_con}}</span>
+          </div>
+          <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
+          <input  type="text" name="nom" class="form-control-plaintext" [(ngModel)]="nconcesionario.idpk_con">
+          </div>
+        </div>
+      </div>
+    
       <br>
 
       <div class="form-group row border-b">
@@ -22,23 +41,7 @@
             <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.cif}}</span>
           </div>
           <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-            <input #newvalue type="text" name="cif" class="form-control-plaintext" [(ngModel)]="nconcesionario.cif" >
-          </div>
-        </div>
-      </div>
-  
-      <br>
-  
-      <div class="form-group row border-b">
-        <div class="col-sm">
-          <label for="ex1" id="ex1">Nombre Concesionario</label>
-        </div>
-        <div class="col-sm">
-          <div *ngIf="disabled">
-          <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.nom}}</span>
-          </div>
-          <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-          <input #newvalue type="text" name="nom" class="form-control-plaintext" [(ngModel)]="nconcesionario.nom">
+            <input type="text" name="cif" class="form-control-plaintext" [(ngModel)]="nconcesionario.cif" >
           </div>
         </div>
       </div>
@@ -54,7 +57,7 @@
             <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.telefon}}</span>
           </div>
           <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-            <input #newvalue type="text" name="telefon" class="form-control-plaintext" [(ngModel)]="nconcesionario.telefon">
+            <input type="text" name="telefon" class="form-control-plaintext" [(ngModel)]="nconcesionario.telefon">
           </div>
         </div>
       </div>
@@ -70,7 +73,7 @@
             <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.email}}</span>
           </div>
           <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-            <input #newvalue type="text" name="email" class="form-control-plaintext" [(ngModel)]="nconcesionario.email">
+            <input type="text" name="email" class="form-control-plaintext" [(ngModel)]="nconcesionario.email">
           </div>
         </div>
       </div>
@@ -85,8 +88,11 @@
           <div *ngIf="disabled">
             <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.provincia.nom}}</span>
           </div>
-          <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-            <input #newvalue type="text" name="provincia" class="form-control-plaintext" [(ngModel)]="nconcesionario.provincia.nom">
+          <div class="form-control-plaintext" id="ex2" *ngIf="!disabled && provincia !=null">
+            <select name="Provincia" [(ngModel)]="provinciaSelected" class="form-control-plaintext" placeholder="Provincia">
+              <option disabled selected>Selecciona la provincia</option>
+              <option *ngFor="let prov of provincia" value="{{prov.nom}}">{{prov.nom}}</option>
+            </select>
           </div>
         </div>  
       </div>
@@ -96,17 +102,17 @@
     <div class="row justify-content-end">
 
       <div class="col-md-2">
-        <button class="btn btn-success" (click)="getInputValue(identificador.value)">Buscar</button>
+        <button class="btn btn-success" (click)="getInputValue(nombreCon.value)">Buscar</button>
       </div>
       <div class="col-md-2">
         <button class="btn btn-warning" (click)="update()">Actualizar</button>
       </div>
       <div class="col-md-2">
         <button class="btn btn-primary" (click)="redirect()">Nuevo Concesionario</button>
-      </div>  
+      </div>
       <div class="col-md-2">
-        <button class="btn btn-danger" (click)="back()">Atrás</button>
-      </div> 
+        <button class="btn btn-danger" (click)="deleteCon()">Eliminar</button>
+      </div>
     </div>
   </div>
 </div>

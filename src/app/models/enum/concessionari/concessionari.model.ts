@@ -1,7 +1,7 @@
 import { Provincia } from "src/app/models/provincia/provincia.model";
 
 export interface Concessionari {
-    id: number;
+    idpk_con: number;
     cif: string;
     nom: string;
     telefon: string;

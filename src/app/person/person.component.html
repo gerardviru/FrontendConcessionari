@@ -1,6 +1,9 @@
 <div class="card col-8 text-center rounded-4">
     <div class="container" >
       <h2>Nueva Asignación Persona</h2>
+      <div class="col-md-1 ">
+        <button class="btn btn-dark" (click)="back()">🡰</button>
+      </div> 
         <form>
           <div class="form-group row border-b">
             <div class="col-sm">
@@ -126,9 +129,6 @@
           </div>
           <div class="col-md-2">
             <button class="btn btn-danger" (click)="clear()">Limpiar</button>
-          </div>
-          <div class="col-md-2">
-            <button class="btn btn-primary" (click)="redirect()">Cancelar</button>
           </div>
         </div>
 
