@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConcessionariService } from '../service/Concessionari/concessionari.service';
 import { LoginService } from '../service/Auth/Login/login.service';
 import { UsuariService } from '../service/Usuario/usuari.service';
 import { Concessionari } from '../models/enum/concessionari/concessionari.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { ProvinciaService } from '../service/Provincia/provincia.service';
 import { Provincia } from '../models/provincia/provincia.model';
 
@@ -15,7 +15,6 @@ import { Provincia } from '../models/provincia/provincia.model';
 })
 export class DealerManagementComponent implements OnInit {
 
-
   disabled: boolean = true
   provincia: any
   provinciaSelected: any
@@ -23,6 +22,7 @@ export class DealerManagementComponent implements OnInit {
   idN: any
   nconcesionario: any = {}
   myForm: FormGroup
+
 
   constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService, private provinciaService: ProvinciaService, private router: Router ) { }
 
@@ -51,15 +51,21 @@ export class DealerManagementComponent implements OnInit {
     })
   }
 
+
   getInputValue(nombreCon:string){
     console.log(nombreCon);
-   
-    this.concessionariService.getByNom(nombreCon).subscribe({
-      next:(result: Concessionari) =>{
-        this.concesionario = result;
-        console.log(this.concesionario); 
-      }
-    })
+    
+    if(nombreCon != null){
+      this.concessionariService.getByNom(nombreCon).subscribe({
+        next:(result: Concessionari) =>{
+          this.concesionario = result;
+          console.log(this.concesionario); 
+        }
+      })
+    }else{
+      alert("Nombre del Concesionario no existe! Intentelo de nuevo")
+    }
+    
   }
   
   redirect(){
@@ -92,7 +98,14 @@ export class DealerManagementComponent implements OnInit {
     console.log(this.nconcesionario)
   }
 
+  get nom(): any { return this.myForm.get('nom'); }
+  get idpk_con(): any { return this.myForm.get('idpk_con'); }
+  get cif(): any { return this.myForm.get('cif'); }
+  get telefon(): any { return this.myForm.get('telefon'); }
+  get email(): any { return this.myForm.get('email'); }
+  resetForm() { this.myForm.setValue({nom: '', idpk_con: '', cif: '', telefon: '',email: '',provincia: '',codi_postal:'',create_per:'',actualitzat_per:'',data_actualitzacio:''}); }
 
+  
   deleteCon(){
 
     console.log(this.concesionario.idpk_con);

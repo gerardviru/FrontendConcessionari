@@ -3,14 +3,14 @@
   <h2>Gestión Concesionario</h2>
   <div class="col-md-1 ">
     <button class="btn btn-dark" (click)="back()">🡰</button>
-  </div> 
-    <form>
+  </div>
+    <form [formGroup]="myForm">
       <div class="form-group row border-b" >
         <div class="col-sm">
           <label for="ex1" id="ex1">Nombre Concesionario</label>
         </div>
         <div class="col-sm">
-          <input #nombreCon type="text" class="form-control" id="ex2">
+          <input #nombreCon type="text" formControlName="nom" class="form-control" id="ex2">
         </div>
       </div>
 
@@ -25,7 +25,7 @@
           <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.idpk_con}}</span>
           </div>
           <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-          <input  type="text" name="nom" class="form-control-plaintext" [(ngModel)]="nconcesionario.idpk_con">
+          <input  type="text" name="nom" formControlName="idpk_con" class="form-control-plaintext" [(ngModel)]="nconcesionario.idpk_con">
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
             <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.cif}}</span>
           </div>
           <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-            <input type="text" name="cif" class="form-control-plaintext" [(ngModel)]="nconcesionario.cif" >
+            <input type="text" name="cif" formControlName="cif" class="form-control-plaintext" [(ngModel)]="nconcesionario.cif" >
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
             <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.telefon}}</span>
           </div>
           <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-            <input type="text" name="telefon" class="form-control-plaintext" [(ngModel)]="nconcesionario.telefon">
+            <input type="text" name="telefon" formControlName="telefon" class="form-control-plaintext" [(ngModel)]="nconcesionario.telefon">
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
             <span type="text" readonly class="form-control-plaintext" id="ex2">{{concesionario.email}}</span>
           </div>
           <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
-            <input type="text" name="email" class="form-control-plaintext" [(ngModel)]="nconcesionario.email">
+            <input type="text" name="email" formControlName="email" class="form-control-plaintext" [(ngModel)]="nconcesionario.email">
           </div>
         </div>
       </div>
@@ -101,17 +101,20 @@
 
     <div class="row justify-content-end">
 
-      <div class="col-md-2">
+      <div class="col-md-1">
         <button class="btn btn-success" (click)="getInputValue(nombreCon.value)">Buscar</button>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <button class="btn btn-warning" (click)="update()">Actualizar</button>
       </div>
       <div class="col-md-2">
         <button class="btn btn-primary" (click)="redirect()">Nuevo Concesionario</button>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <button class="btn btn-danger" (click)="deleteCon()">Eliminar</button>
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-dark" (click)="resetForm()">Limpiar</button>
       </div>
     </div>
   </div>
