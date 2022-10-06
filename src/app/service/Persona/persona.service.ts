@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Persona } from '../../models/Persona/persona.model';
+import { AnimationPlayer } from '@angular/animations';
 
 const baseUrl = 'http://localhost:8181/api';
 

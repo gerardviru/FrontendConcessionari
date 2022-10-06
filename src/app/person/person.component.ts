@@ -5,6 +5,10 @@ import { Persona } from '../models/Persona/persona.model';
 import { ProvinciaService } from '../service/Provincia/provincia.service';
 import { Provincia } from '../models/provincia/provincia.model';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ConcessionariService } from '../service/Concessionari/concessionari.service';
+import { Concesionario } from '../models/Concesionario/concesionario.model';
+import { Concessionari } from '../models/enum/concessionari/concessionari.model';
+
 
 @Component({
   selector: 'app-person',
@@ -19,13 +23,23 @@ export class PersonComponent implements OnInit {
 
   provinciaSelected = "";
 
+  conSelected = "";
+
+  idprovSelected = "";
+
   provincia: any;
 
   Dpersona!: Persona;
 
+  newPerson: any;
+
+  listCon: any;
+
+  listIdProvConc: any;
+
   myForm: FormGroup;
 
-  constructor(private personaService: PersonaService ,private router: Router, private provinciaService: ProvinciaService) { }
+  constructor(private personaService: PersonaService ,private router: Router, private provinciaService: ProvinciaService, private concesionarioService: ConcessionariService) { }
 
   ngOnInit(): void {
 
@@ -53,6 +67,20 @@ export class PersonComponent implements OnInit {
         console.log(this.provincia)
       }
     })
+
+    this.concesionarioService.listConcessionari().subscribe({
+      next:(result: Concessionari) => {
+        this.listCon = result
+        console.log(this.listCon)
+      }
+    })
+
+    this.provinciaService.list().subscribe({
+      next: (result: Provincia) => {
+        this.listIdProvConc = result
+        console.log(this.listIdProvConc)
+      }
+    })
   }
 
   getValors(){
@@ -64,6 +92,16 @@ export class PersonComponent implements OnInit {
     this.persona.provincia = provnom;
     console.log(this.persona); 
 
+    let conNom = {
+      nom: this.conSelected,
+      provincia: {
+        idpk_prov: this.idprovSelected
+      }
+    }
+    this.persona.concessionari = conNom
+
+    console.log(this.persona);
+    
     if(this.persona.length == 0){
       console.log("array vacio");
     } else {
@@ -74,10 +112,35 @@ export class PersonComponent implements OnInit {
         }
       })
     }
+
+    alert("Persona nueva añadida")
   }
 
+  update(){
+    
+    this.disabled = !this.disabled;
+    console.log("valor conce")
+    console.log(this.newPerson)
+    console.log('selected')
+    console.log(this.provinciaSelected)
+    
+    this.newPerson.provincia = {
+
+      "nom": this.provinciaSelected
+    }
+    
+    this.personaService.update(this.newPerson.idpk_persona,this.newPerson).subscribe({
+      next:(result: Persona) =>{
+        console.log("result")
+        console.log(result)
+      }
+    })
+    console.log(this.newPerson)
+  }
+
+
   back(){
-    this.router.navigate(['/menu'])
+    this.router.navigate(['/management-person'])
   }
 
   clear(){

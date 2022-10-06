@@ -4,7 +4,7 @@
       <div class="col-md-1 ">
         <button class="btn btn-dark" (click)="back()">🡰</button>
       </div> 
-        <form id="miForm" [formGroup]="myForm">
+        <form [formGroup]="myForm">
 
           <div class="form-group row border-b">
             <div class="col-sm">
@@ -17,48 +17,68 @@
 
           <br>
           
-          <div class="form-group row border-b" >
-            <div class="col-sm">
-              <label for="ex1" id="ex1">Identificador</label>
-            </div>
-            <div class="col-sm">
-              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.idpk_persona}}</span>
-            </div>
+        <div class="form-group row border-b" >
+          <div class="col-sm">
+            <label for="ex1" id="ex1">Identificador</label>
           </div>
-    
+          <div class="col-sm">
+          <div *ngIf="disabled">
+            <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.idpk_persona}}</span>
+          </div>
+          <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
+            <input  type="text" name="nom" formControlName="idpk_con" class="form-control-plaintext" [(ngModel)]="novaPersona.idpk_persona">
+          </div>
+          </div>
+        </div>
+
           <br>
     
-          <div class="form-group row border-b">
-            <div class="col-sm">
-              <label for="ex1" id="ex1">NIF</label>
-            </div>
-            <div class="col-sm">
-              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.nif}}</span>
-            </div>
+        <div class="form-group row border-b">
+          <div class="col-sm">
+            <label for="ex1" id="ex1">NIF</label>
           </div>
-      
+          <div class="col-sm">
+          <div *ngIf="disabled">
+          <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.nif}}</span>
+          </div>
+          <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
+          <input type="text" name="nif" formControlName="cif" class="form-control-plaintext" [(ngModel)]="novaPersona.nif" >
+          </div>
+          </div>
+        </div>
+
           <br>
       
-          <div class="form-group row border-b">
-            <div class="col-sm">
-              <label for="ex1" id="ex1">Telefono</label>
-            </div>
-            <div class="col-sm">
+        <div class="form-group row border-b">
+          <div class="col-sm">
+            <label for="ex1" id="ex1">Telefono</label>
+          </div>
+          <div class="col-sm">
+            <div *ngIf="disabled">
               <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.telefon}}</span>
             </div>
+            <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
+              <input type="text" name="telefon" formControlName="telefon" class="form-control-plaintext" [(ngModel)]="novaPersona.telefon">
+            </div>
           </div>
-      
+        </div>  
+
           <br>
       
-          <div class="form-group row border-b">
-            <div class="col-sm">
-              <label for="ex1" id="ex1">E-mail</label>
-            </div>
-            <div class="col-sm">
+        <div class="form-group row border-b">
+          <div class="col-sm">
+            <label for="ex1" id="ex1">E-mail</label>
+          </div>
+          <div class="col-sm">
+            <div *ngIf="disabled">
               <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.email}}</span>
             </div>
+            <div class="form-control-plaintext" id="ex2" *ngIf="!disabled">
+              <input type="text" name="email" formControlName="email" class="form-control-plaintext" [(ngModel)]="novaPersona.email">
+            </div>
           </div>
-    
+        </div>
+
           <br>
     
           <div class="form-group row border-b">
@@ -66,7 +86,15 @@
               <label for="ex1" id="ex1">Provincia</label>
             </div>
             <div class="col-sm">
+              <div *ngIf="disabled">
               <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.provincia.nom}}</span>
+              </div>
+              <div class="form-control-plaintext" id="ex2" *ngIf="!disabled && provincia !=null">
+              <select name="Provincia" [(ngModel)]="provinciaSelected" class="form-control-plaintext" placeholder="Provincia">
+                <option disabled selected>Selecciona la provincia</option>
+                <option *ngFor="let prov of provincia" value="{{prov.nom}}">{{prov.nom}}</option>
+              </select>
+              </div>
             </div>
           </div>
 
@@ -77,7 +105,15 @@
               <label for="ex1" id="ex1">Concesionario</label>
             </div>
             <div class="col-sm">
+              <div *ngIf="disabled">
               <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.concessionari.nom}}</span>
+              </div>
+              <div class="col-sm" *ngIf="!disabled && listCon != null">
+                <select name="Concessionari" [(ngModel)]="conSelected" class="form-control-plaintext" placeholder="Concessionari">
+                  <option disabled selected>Selecciona el concesionario</option>
+                  <option *ngFor="let conNom of listCon" value="{{conNom.nom}}">{{conNom.nom}}</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -88,10 +124,19 @@
               <label for="ex1" id="ex1">Tipo de Persona</label>
             </div>
             <div class="col-sm">
-              <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.tipo_persona}}</span>
+            <div *ngIf="disabled">
+            <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.tipo_persona}}</span>
+            </div>
+            <div class="col-sm" *ngIf="!disabled">
+              <select name="tipo_persona" [(ngModel)]="persona.tipo_persona" class="form-control-plaintext">
+                <option disabled selected>Selecciona el tipo de Persona</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Trabajador">Trabajador</option>
+              </select>
+            </div>
             </div>
           </div>
-        </form>
+      </form>
     
     
         <div class="row justify-content-end">
@@ -99,7 +144,7 @@
             <button class="btn btn-success" (click)="getInputValue(NomPer.value)">Buscar</button>
           </div>
           <div class="col-md-2">
-            <button class="btn btn-warning" (click)="Update()">Actualizar</button>
+            <button class="btn btn-warning" (click)="update()">Actualizar</button>
           </div>
           <div class="col-md-2">
             <button class="btn btn-primary" (click)="newPerson()">Nueva Persona</button>

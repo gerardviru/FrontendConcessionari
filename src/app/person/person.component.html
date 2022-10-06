@@ -57,17 +57,7 @@
                 <input type="text" name="Cognom2" [(ngModel)]="persona.cognom2" class="form-control-plaintext" id="ex2">
             </div>
           </div>
-    
-          <br>
-    
-          <div class="form-group row border-b">
-            <div class="col-sm">
-              <label for="ex1" id="ex1">Telefono</label>
-            </div>
-            <div class="col-sm">
-                <input type="text" name="Telefono" [(ngModel)]="persona.telefon" class="form-control-plaintext" id="ex2">
-            </div>
-          </div>
+
           <br>
 
           <div class="form-group row border-b">
@@ -92,16 +82,32 @@
               </select>
             </div>
           </div>
-
-
+          
           <br>
 
           <div class="form-group row border-b">
             <div class="col-sm">
               <label for="ex1" id="ex1">Concesionario</label>
             </div>
+            <div class="col-sm" *ngIf="listCon != null">
+              <select name="Concessionari" [(ngModel)]="conSelected" class="form-control-plaintext" placeholder="Concessionari">
+                <option disabled selected>Selecciona el concesionario</option>
+                <option *ngFor="let conNom of listCon" value="{{conNom.nom}}">{{conNom.nom}}</option>
+              </select>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="form-group row border-b">
             <div class="col-sm">
-                <input type="text" name="concesionario" [(ngModel)]="persona.concesionario" class="form-control-plaintext" id="ex2">
+              <label for="ex1" id="ex1">Id Provincia Concesionario</label>
+            </div>
+            <div class="col-sm" *ngIf="listIdProvConc != null">
+              <select name="Provincia" [(ngModel)]="idprovSelected" class="form-control-plaintext" placeholder="Provincia">
+                <option disabled selected>Selecciona la provincia</option>
+                <option *ngFor="let idprovi of listIdProvConc" value="{{idprovi.idpk_prov}}">{{idprovi.idpk_prov}}</option>
+              </select>
             </div>
           </div>
 
@@ -131,8 +137,5 @@
             <button class="btn btn-danger" (click)="clear()">Limpiar</button>
           </div>
         </div>
-
-        <br>
-
       </div>
     </div>

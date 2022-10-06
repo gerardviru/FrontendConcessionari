@@ -1,6 +1,7 @@
-import { Concesionario } from "../Concesionario/concesionario.model";
+import { Concessionari } from "../enum/concessionari/concessionari.model";
 
 export interface Persona{
+    length: number;
     idpk_persona: number;
     nif: number;
     nom: string;
