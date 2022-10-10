@@ -17,7 +17,7 @@ import { Concessionari } from '../models/enum/concessionari/concessionari.model'
 export class PersonManagementComponent implements OnInit {
 
   disabled: boolean = true;
-  provincia: any
+  provin: any
   listCon: any
   conSelected: any
   id: any;
@@ -45,17 +45,14 @@ export class PersonManagementComponent implements OnInit {
       telefon: new FormControl('' ,Validators.required),
       email: new FormControl('' ,Validators.required),
       provincia: new FormControl ('' ,Validators.required),
-      codi_postal: new FormControl('' ,Validators.required),
-      create_per: new FormControl('' ,Validators.required),
-      actualitzat_per: new FormControl('' ,Validators.required),
-      data_actualitzacio: new FormControl ('' ,Validators.required),
+      
 
     })
 
     this.provinciaService.list().subscribe({
       next: (result: Provincia) => {
-        this.provincia = result;
-        console.log(this.provincia);
+        this.provin = result;
+        console.log(this.provin);
       }
     })
 
@@ -116,6 +113,15 @@ export class PersonManagementComponent implements OnInit {
     alert("Datos personales actualizados")
   }
 
+  get idpk_persona(): any { return this.myForm.get('idkp_persona')}
+  get nif(): any { return this.myForm.get('nif')}
+  get nom(): any{ return this.myForm.get('nom')}
+  get telefon(): any{ return this.myForm.get('telefon')}
+  get email(): any{ return this.myForm.get('email')}
+  get provincia(): any { return this.myForm.get('provincia')}
+  resetForm() { this.myForm.setValue({idpk_persona:'', nif:'', nom:'', telefon:'', email:'', provincia:''}); }
+
+  
   back(){
     this.router.navigate(['/menu']);
   }
@@ -125,6 +131,14 @@ export class PersonManagementComponent implements OnInit {
   }
 
   DeletePer(){
+
+    console.log(this.persona.idpk_persona);
+
+    this.personaService.delete(this.persona.idpk_persona).subscribe({
+      next:(result: Persona) => {
+      }
+    })
+    alert("Persona Eliminada")
 
   }
 

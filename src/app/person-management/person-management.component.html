@@ -89,10 +89,10 @@
               <div *ngIf="disabled">
               <span type="text" readonly class="form-control-plaintext" id="ex2">{{persona.provincia.nom}}</span>
               </div>
-              <div class="form-control-plaintext" id="ex2" *ngIf="!disabled && provincia !=null">
+              <div class="form-control-plaintext" id="ex2" *ngIf="!disabled && provin !=null">
               <select name="Provincia" [(ngModel)]="provinciaSelected" class="form-control-plaintext" placeholder="Provincia">
                 <option disabled selected>Selecciona la provincia</option>
-                <option *ngFor="let prov of provincia" value="{{prov.nom}}">{{prov.nom}}</option>
+                <option *ngFor="let prov of provin" value="{{prov.nom}}">{{prov.nom}}</option>
               </select>
               </div>
             </div>
@@ -140,17 +140,20 @@
     
     
         <div class="row justify-content-end">
-          <div class="col-md-2">
+          <div class="col-md-1">
             <button class="btn btn-success" (click)="getInputValue(NomPer.value)">Buscar</button>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-1">
             <button class="btn btn-warning" (click)="update()">Actualizar</button>
           </div>
           <div class="col-md-2">
             <button class="btn btn-primary" (click)="newPerson()">Nueva Persona</button>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-1">
             <button class="btn btn-danger" (click)="DeletePer()">Eliminar</button>
+          </div>
+          <div class="col-md-1">
+            <button class="btn btn-dark" (click)="resetForm()">Limpiar</button>
           </div>
         </div>
       </div>

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConcessionariService } from '../service/Concessionari/concessionari.service';
-import { LoginService } from '../service/Auth/Login/login.service';
-import { UsuariService } from '../service/Usuario/usuari.service';
 import { Concessionari } from '../models/enum/concessionari/concessionari.model';
-import { FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ProvinciaService } from '../service/Provincia/provincia.service';
 import { Provincia } from '../models/provincia/provincia.model';
 
@@ -24,7 +22,7 @@ export class DealerManagementComponent implements OnInit {
   myForm: FormGroup
 
 
-  constructor(private concessionariService: ConcessionariService, private loginService: LoginService, private usuariService: UsuariService, private provinciaService: ProvinciaService, private router: Router ) { }
+  constructor(private concessionariService: ConcessionariService, private provinciaService: ProvinciaService, private router: Router ) { }
 
   ngOnInit(): void {
 
@@ -57,7 +55,7 @@ export class DealerManagementComponent implements OnInit {
     
     if(nombreCon != null){
       this.concessionariService.getByNom(nombreCon).subscribe({
-        next:(result: Concessionari) =>{
+        next:(result: Concessionari) => {
           this.concesionario = result;
           console.log(this.concesionario); 
         }

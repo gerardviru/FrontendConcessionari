@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Persona } from '../../models/Persona/persona.model';
-import { AnimationPlayer } from '@angular/animations';
+
 
 const baseUrl = 'http://localhost:8181/api';
 
@@ -49,8 +49,8 @@ export class PersonaService {
     return this.httpClient.put<Persona>(`${baseUrl}/persona/${id}`,data).pipe(catchError(this.handleError));
   }
 
-  delete(id:any){
-    return this.httpClient.delete<Persona>(`${baseUrl}/${id}`).pipe(catchError(this.handleError));
+  delete(id: number){
+    return this.httpClient.delete<Persona>(`${baseUrl}/persona/${id}`).pipe(catchError(this.handleError));
   }
 
 
