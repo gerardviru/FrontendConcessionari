@@ -33,6 +33,7 @@ export class DealerManagementComponent implements OnInit {
       nom: new FormControl('', Validators.required),
       telefon: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
+      adreca: new FormControl('', Validators.required),
       provincia: new FormControl ('', Validators.required),
       codi_postal: new FormControl('', Validators.required),
       create_per: new FormControl('', Validators.required),
@@ -100,8 +101,11 @@ export class DealerManagementComponent implements OnInit {
   get idpk_con(): any { return this.myForm.get('idpk_con'); }
   get cif(): any { return this.myForm.get('cif'); }
   get telefon(): any { return this.myForm.get('telefon'); }
-  get email(): any { return this.myForm.get('email'); }
-  resetForm() { this.myForm.setValue({nom: '', idpk_con: '', cif: '', telefon: '',email: '',provincia: '',codi_postal:'',create_per:'',actualitzat_per:'',data_actualitzacio:''}); }
+  get adreca(): any { return this.myForm.get('adreca');}
+  get email(): any { return this.myForm.get('email');}
+  get prov(): any { return this.myForm.get('adreca');}
+
+  resetForm() { this.myForm.setValue({nom: '', idpk_con: '', cif: '', telefon: '',email: '',adreca:'',prov: '',codi_postal:'',create_per:'',actualitzat_per:'',data_actualitzacio:''}); }
 
   
   deleteCon(){

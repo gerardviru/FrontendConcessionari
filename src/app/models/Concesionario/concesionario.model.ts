@@ -6,7 +6,7 @@ export interface Concesionario{
     nom: string;
     telefon: string;
     email: string;
-    adreça: string;
+    adreca: string;
     provicia: Provincia;
     codi_postal: number;
     creat_per: string;
